@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return view('login');
+    return 'Halaman Login Backend';
 })->name('login');
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -18,7 +18,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', function () {
-        return "Selamat datang di Dashboard";
+        return 'Selamat datang di Dashboard';
     });
 
 });
