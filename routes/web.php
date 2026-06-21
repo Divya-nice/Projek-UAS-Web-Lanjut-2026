@@ -18,6 +18,9 @@ Route::get('/beranda', [BerandaController::class, 'index'])
 Route::get('/kegiatan', [KegiatanController::class, 'index'])
     ->name('kegiatan.index');
 
+Route::post('/kegiatan/store', [KegiatanController::class, 'store'])
+    ->name('kegiatan.store');
+
 Route::get('/verifikasi-relawan', function () {
     return view('admin.relawan.index');
 })->name('relawan.index');

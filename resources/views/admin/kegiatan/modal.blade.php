@@ -56,8 +56,8 @@
         document.getElementById('modal-title').innerText = "Tambah Kegiatan Baru";
         document.getElementById('btn-submit').innerText = "Tambah Kegiatan";
         
-        // Sesuaikan dengan nama route store dari Anggota 1
-        document.getElementById('form-kegiatan').action = "{{ route('admin.kegiatan.store') }}";
+        // FIX: Diubah dari 'admin.kegiatan.store' menjadi 'kegiatan.store'
+        document.getElementById('form-kegiatan').action = "{{ route('kegiatan.store') }}";
         document.getElementById('method-container').innerHTML = "";
         
         document.getElementById('form-kegiatan').reset();
@@ -69,8 +69,8 @@
         document.getElementById('modal-title').innerText = "Edit Detail Kegiatan";
         document.getElementById('btn-submit').innerText = "Simpan Perubahan";
         
-        // URL Update data (Contoh: /admin/kegiatan/5)
-        document.getElementById('form-kegiatan').action = `/admin/kegiatan/${data.id}`;
+        // FIX: Diubah dari '/admin/kegiatan/...' menjadi '/kegiatan/...' sesuai struktur route web.php
+        document.getElementById('form-kegiatan').action = `/kegiatan/${data.id}`;
         document.getElementById('method-container').innerHTML = `<input type="hidden" name="_method" value="PUT">`;
         
         // Isi form dengan data dari baris tabel Anggota 2
