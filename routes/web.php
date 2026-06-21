@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KegiatanController;
 
 Route::get('/', function () {
     return view('login');
 });
+
+Route::get('kegiatan', [KegiatanController::class, 'index']);
 
 Route::view('/login', 'login')->name('login');
 
