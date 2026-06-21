@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KegiatanController;
 
+
 Route::get('/', function () {
     return view('login');
 });
@@ -23,3 +24,10 @@ Route::middleware('auth')->group(function () {
     });
 
 });
+
+Route::redirect('/', '/relawan');
+
+Route::view('/relawan', 'relawan.index');
+
+Route::view('/relawan/detail', 'relawan.show');
+
