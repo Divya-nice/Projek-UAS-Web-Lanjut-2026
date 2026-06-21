@@ -7,7 +7,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Kelola Kegiatan</h2>
 
-        <button class="btn btn-success">
+        <button class="btn btn-success" onclick="openAddModal()">
             + Tambah Kegiatan
         </button>
     </div>
@@ -66,7 +66,8 @@
                             <td>
 
                                 <button
-                                    class="btn btn-warning btn-sm">
+                                    class="btn btn-warning btn-sm" 
+                                    onclick="openEditModal({{ json_encode($item) }})">
                                     Edit
                                 </button>
 
@@ -85,7 +86,7 @@
                         <tr>
                             <td colspan="7" class="text-center">
                                 Tidak ada data kegiatan
-                            </td>
+                            </td>End
                         </tr>
 
                     @endforelse
@@ -99,5 +100,7 @@
     </div>
 
 </div>
+
+@include('admin.kegiatan.modal')
 
 @endsection
