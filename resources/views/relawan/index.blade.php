@@ -129,6 +129,7 @@
 
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach($kegiatan as $item)
 
 
 
@@ -141,7 +142,7 @@
 
 
 
-                <img src="{{ asset('images/Gema aksara gambar.png') }}"
+                <img src="{{ asset('images/' . $item->gambar) }}"
 
                      class="w-full h-56 object-cover">
 
@@ -167,7 +168,7 @@
 
                     <p class="mt-4 text-gray-500">
 
-                        📅 25 Juni 2026
+                        📅 {{ $item->tanggal }}
 
                     </p>
 
@@ -188,7 +189,7 @@
                     <h3 class="text-2xl font-bold mt-3 text-amber-900">
 
 
-                        Petualangan Membaca Bersama
+                        {{ $item->judul }}
 
 
                     </h3>
@@ -199,9 +200,12 @@
 
 
                     <p class="text-gray-600 mt-3">
+                        {{ $item->deskripsi }}
 
+                    </p>
 
-                        📍 Aula Perpustakaan Daerah
+                    <p class="text-gray-600 mt-3">
+                        {{ $item->lokasi }}
 
 
                     </p>
@@ -226,7 +230,7 @@
             </div>
 
 
-
+           @endforeach 
 
 
         </div>

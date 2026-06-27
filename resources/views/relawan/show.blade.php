@@ -272,8 +272,9 @@ Formulir Pendaftaran Relawan
 
 
 
-<form>
-
+<form action="/pendaftaran"method="POST">
+    @csrf
+<input type="hidden" name="kegiatan_id" value="1">
 
 
 
@@ -288,7 +289,7 @@ Nama Lengkap
 
 
 <input type="text"
-
+name="nama"
 placeholder="Masukkan nama lengkap"
 
 class="w-full border rounded-xl p-3 mt-2 mb-5">
@@ -317,8 +318,7 @@ Jenis Kelamin
 
 <label>
 
-<input type="radio">
-
+<input type="radio" name="jenis_kelamin" value="laki-laki">
 Laki-laki
 
 
@@ -328,7 +328,7 @@ Laki-laki
 
 <label>
 
-<input type="radio">
+<input type="radio" name="jenis_kelamin" value="perempuan">
 
 Perempuan
 
@@ -358,6 +358,7 @@ No Telepon / WA
 
 
 <input type="text"
+name="nomor_telepon"
 
 placeholder="08xxxxxxxxxx"
 
@@ -381,7 +382,7 @@ Alamat Rumah
 
 
 <textarea
-
+name="alamat"
 rows="3"
 
 placeholder="Masukkan alamat lengkap"
@@ -409,7 +410,7 @@ Alasan Mengikuti
 
 
 <textarea
-
+name="alasan"
 rows="4"
 
 placeholder="Ceritakan alasan Anda mengikuti kegiatan ini"
