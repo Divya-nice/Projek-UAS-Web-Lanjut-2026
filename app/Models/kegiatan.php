@@ -11,10 +11,24 @@ class Kegiatan extends Model
     protected $primaryKey = 'id_kegiatan';
 
     protected $fillable = [
+
         'nama_kegiatan',
+
         'deskripsi',
+
         'tanggal',
+
         'jam_mulai',
-        'lokasi'
+
+        'lokasi',
+
+        'status'
+
+    ];
+
+    protected $casts = [
+
+        'tanggal' => 'date'
+
     ];
 }
