@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/relawan');
+
+Route::view('/relawan', 'relawan.index');
+
+Route::view('/relawan/detail', 'relawan.show');
+Route::view('/relawan/sukses', 'relawan.sukses');
