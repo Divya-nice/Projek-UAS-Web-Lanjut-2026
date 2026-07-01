@@ -83,7 +83,7 @@ class="text-amber-800 font-semibold hover:underline">
 
 
 
-<img src="{{ asset('images/Gema aksara gambar.png') }}"
+<img src="{{ asset('images/' . $item->gambar) }}"
 
 class="w-full h-80 object-cover">
 
@@ -125,7 +125,7 @@ class="w-full h-80 object-cover">
 <h1 class="text-4xl font-bold text-amber-900 mt-5">
 
 
-Petualangan Membaca Bersama
+{{ $item->judul }}
 
 
 </h1>
@@ -139,7 +139,7 @@ Petualangan Membaca Bersama
 
 
 
-Petualangan Membaca Bersama merupakan kegiatan literasi interaktif yang mengajak anak-anak menjelajahi dunia cerita melalui sesi membaca nyaring, permainan edukatif, dan diskusi ringan bersama relawan GemaAksara.
+{{ $item->deskripsi }}
 
 
 </p>

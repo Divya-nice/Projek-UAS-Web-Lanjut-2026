@@ -8,240 +8,703 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-stone-100">
+<body class="bg-[#F7F2EB] pt-20 relative overflow-x-hidden">
+    
 
-    <!-- Navbar -->
-    <nav class="sticky top-0 z-50 bg-amber-900 text-white px-12 py-5 flex justify-between items-center shadow-md">
 
-        <div class="flex items-center gap-3">
 
-            <img src="{{ asset('images/buku.png') }}"
-                 class="w-10 h-10 object-contain">
+<!-- NAVBAR -->
 
-            <h1 class="font-bold text-2xl">
-                GemaAksara
-            </h1>
+<nav class="fixed top-0 left-0 w-full z-50
 
-        </div>
+bg-gradient-to-r
+from-amber-950
+via-amber-900
+to-yellow-800
 
+text-white
 
-        <div class="space-x-8">
+px-12
+py-4
 
-            <a href=""
-               class="hover:text-yellow-300 duration-300">
+flex
+justify-between
+items-center
 
-                Beranda Kegiatan
+shadow-lg">
 
-            </a>
 
+<div class="flex items-center gap-3">
 
-            <a href=""
-               class="hover:text-yellow-300 duration-300">
+<img src="{{ asset('images/buku.png') }}"
 
-                Jadwal Saya
+class="w-8">
 
-            </a>
+<h1 class="font-bold text-2xl">
 
-        </div>
+GemaAksara
 
+</h1>
 
-        <div>
+</div>
 
-            Halo, Relawan 👋
 
-        </div>
 
 
-    </nav>
 
+<div class="flex gap-14 font-medium">
 
+<a href="/relawan"
 
+class="hover:text-yellow-300">
 
-    <!-- Banner -->
+Beranda Kegiatan
 
-    <section class="mx-10 mt-8">
+</a>
 
 
-        <div class="bg-gradient-to-r from-amber-900 to-yellow-700 rounded-3xl shadow-xl p-10 text-white">
 
+<a href="">
 
-            <h1 class="text-5xl font-bold leading-tight">
+Jadwal Saya
 
-                Jadilah Bagian dari Gerakan Literasi Pontianak
+</a>
 
+</div>
 
-            </h1>
 
 
 
-            <p class="mt-5 text-amber-100 text-lg">
 
-                Temukan kegiatan membaca, mendongeng,
-                dan edukasi anak bersama relawan GemaAksara.
+<div class="flex items-center gap-3">
 
+Halo, Relawan
 
-            </p>
+<div class="w-8 h-8
 
+rounded-full
 
+bg-amber-700
 
-            <a href="#kegiatan"
+flex
 
-               class="inline-block mt-6 bg-white text-amber-900 px-6 py-3 rounded-xl font-semibold hover:bg-amber-100 transition">
+justify-center
 
+items-center">
 
-                Jelajahi Kegiatan
+👤
 
+</div>
 
-            </a>
+</div>
 
 
+</nav>
 
-        </div>
 
 
-    </section>
 
 
 
+<!-- HERO -->
 
+<section class="mx-10 mt-8">
 
+<div class="bg-gradient-to-r
 
+from-[#5B1E08]
+via-[#A3470A]
+to-[#D97706]
 
-    <!-- Kegiatan -->
+rounded-[32px]
 
+shadow-xl
 
-    <section id="kegiatan"
+px-12
+py-6
 
-             class="mx-10 mt-12 mb-16">
+text-white
 
+flex
+items-center
+justify-between">
 
 
-        <h2 class="text-3xl font-bold text-amber-900 mb-8">
+<!-- kiri -->
 
+<div class="max-w-2xl">
 
-            Daftar Kegiatan
 
+<h1 class="text-3xl font-bold leading-tight">
 
-        </h2>
+Jadilah Bagian dari
 
+Gerakan Literasi Pontianak
 
+</h1>
 
 
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach($kegiatan as $item)
+<p class="mt-5 text-lg text-amber-100">
 
+Temukan kegiatan membaca,
 
+mendongeng dan edukasi anak
 
+bersama relawan GemaAksara.
 
+</p>
 
-            <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl duration-300 overflow-hidden">
 
 
+<a href="#kegiatan"
 
+class="mt-7
 
+inline-flex
 
+items-center
 
-                <img src="{{ asset('images/' . $item->gambar) }}"
+gap-3
 
-                     class="w-full h-56 object-cover">
+bg-white
 
+text-amber-900
 
+font-semibold
 
+px-6
 
+py-3
 
+rounded-xl
 
-                <div class="p-6">
+hover:bg-amber-50
 
+duration-300">
 
 
 
-                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
 
-                        Pendaftaran Dibuka
+Jelajahi Kegiatan
 
-                    </span>
 
+</a>
 
 
+</div>
 
 
-                    <p class="mt-4 text-gray-500">
 
-                        📅 {{ $item->tanggal }}
 
-                    </p>
+<!-- kanan -->
 
+<img src="{{ asset('images/1.png') }}"
 
+class="w-80">
 
 
-                    <p class="text-gray-500">
 
-                        🕘 09.00 WIB
 
-                    </p>
+</div>
 
+</section>
 
 
 
 
 
-                    <h3 class="text-2xl font-bold mt-3 text-amber-900">
 
 
-                        {{ $item->judul }}
 
 
-                    </h3>
 
 
 
 
 
 
-                    <p class="text-gray-600 mt-3">
-                        {{ $item->deskripsi }}
+<!-- TENTANG GEMAAKSARA -->
 
-                    </p>
+<section class="max-w-6xl mx-auto py-14">
 
-                    <p class="text-gray-600 mt-3">
-                        {{ $item->lokasi }}
 
+<h2 class="text-4xl
 
-                    </p>
+font-bold
 
+text-center
 
+text-amber-950">
 
 
+Tentang GemaAksara
 
 
-                    
-                    <a href="/relawan/detail"
-                        class="mt-5 block w-full bg-amber-700 hover:bg-amber-800 text-white py-3 rounded-xl font-semibold text-center transition">
+</h2>
 
-                        Lihat Detail & Daftar
 
-                    </a>
 
-                </div>
+<p class="text-center
 
+text-gray-600
 
+mt-3">
 
-            </div>
 
+Mari berkontribusi membangun budaya membaca
 
-           @endforeach 
+bagi anak-anak Pontianak.
 
 
-        </div>
+</p>
 
 
 
-    </section>
 
+
+<div class="grid md:grid-cols-3 gap-8 mt-12">
+
+@foreach ($kegiatan as $item)
+
+<!-- card 1 -->
+
+<div class="bg-white
+
+rounded-3xl"
+
+shadow-lg
+
+p-7
+
+hover:-translate-y-2
+
+duration-300>
+
+
+<img src="{{ asset('images/2.png') }}"
+
+class="w-30 mb-5">
+
+
+<h3 class="text-2xl
+
+font-bold
+
+text-amber-950">
+
+
+Kegiatan Literasi
+
+
+</h3>
+
+
+<p class="mt-3
+
+text-gray-600">
+
+
+Membaca bersama,
+
+mendongeng,
+
+dan pojok baca
+
+untuk anak-anak.
+
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<!-- card 2 -->
+
+<div class="bg-white
+
+rounded-3xl
+
+shadow-lg
+
+p-7
+
+hover:-translate-y-2
+
+duration-300">
+
+
+<img src="{{ asset('images/3.png') }}"
+
+class="w-30 mb-5">
+
+
+<h3 class="text-2xl
+
+font-bold
+
+text-amber-950">
+
+
+Relawan Aktif
+
+
+</h3>
+
+
+<p class="mt-3
+
+text-gray-600">
+
+
+Pantau jadwal kegiatan
+
+dan berkontribusi
+
+bersama komunitas.
+
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- card 3 -->
+
+<div class="bg-white
+
+rounded-3xl
+
+shadow-lg
+
+p-7
+
+hover:-translate-y-2
+
+duration-300">
+
+
+<img src="{{ asset('images/4.png') }}"
+
+class="w-30 mb-5">
+
+
+<h3 class="text-2xl
+
+font-bold
+
+text-amber-950">
+
+
+Dampak Nyata
+
+
+</h3>
+
+
+<p class="mt-3
+
+text-gray-600">
+
+
+Menciptakan pengalaman
+
+belajar yang menyenangkan
+
+bagi anak-anak.
+
+
+</p>
+
+
+</div>
+
+
+
+
+</div>
+
+</section>
+
+
+
+
+
+
+
+
+<!-- DAFTAR KEGIATAN -->
+
+
+<section id="kegiatan"
+
+class="mx-10 mb-16">
+
+
+
+<h2 class="text-3xl font-bold text-amber-900 mb-8">
+
+
+Daftar Kegiatan
+
+
+</h2>
+
+
+
+
+
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+
+
+
+
+<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl duration-300 overflow-hidden">
+
+
+
+
+
+
+<img src="{{ asset('images/Gema aksara gambar.png') }}"
+
+class="w-full h-56 object-cover">
+
+
+
+
+
+
+<div class="p-6">
+
+
+
+
+
+<span class="bg-green-100
+
+text-green-700
+
+px-3
+
+py-1
+
+rounded-full
+
+text-sm">
+
+
+Pendaftaran Dibuka
+
+
+</span>
+
+
+
+
+
+<p class="mt-4 text-gray-500">
+
+
+📅 {{ $item->tanggal }}
+
+
+</p>
+
+
+
+
+
+<p class="text-gray-500">
+
+
+🕘 {{ $item->waktu }}
+
+
+</p>
+
+
+
+
+
+
+
+<h3 class="text-2xl font-bold mt-3 text-amber-900">
+
+
+{{ $item->judul }}
+
+
+</h3>
+
+
+
+
+
+
+<p class="text-gray-600 mt-3">
+
+
+📍 {{ $item->lokasi }}
+
+
+</p>
+
+
+
+
+
+
+
+<a href="{{ route('relawan.show', $item->id) }}"
+
+class="mt-5 block w-full
+
+bg-gradient-to-r
+
+from-[#6B240C]
+
+via-[#B45309]
+
+to-[#D97706]
+
+text-white
+
+py-3
+
+rounded-xl
+
+font-semibold
+
+text-center
+
+hover:scale-105
+
+duration-300">
+
+
+Lihat Detail & Daftar
+
+
+</a>
+
+
+
+</div>
+
+
+
+</div>
+<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl duration-300 overflow-hidden">
+
+<img src="{{ asset('images/Dongeng cerita.png') }}"
+class="w-full h-56 object-cover">
+
+<div class="p-6">
+
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+Pendaftaran Dibuka
+</span>
+
+<p class="mt-4 text-gray-500">
+📅 02 Agustus 2026
+</p>
+
+<p class="text-gray-500">
+🕘 08.30 WIB
+</p>
+
+<h3 class="text-2xl font-bold mt-3 text-amber-900">
+Dongeng Ceria Bersama Anak-anak
+</h3>
+
+<p class="text-gray-600 mt-3">
+📍 Taman Alun Kapuas
+</p>
+
+<a href="{{ route('relawan.show', $item->id) }}"
+class="mt-5 block w-full
+bg-gradient-to-r
+from-[#6B240C]
+via-[#B45309]
+to-[#D97706]
+text-white
+py-3
+rounded-xl
+font-semibold
+text-center
+hover:scale-105
+duration-300">
+
+Lihat Detail & Daftar
+
+</a>
+
+</div>
+
+</div>
+
+<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl duration-300 overflow-hidden flex flex-col">
+
+    <img src="{{ asset('images/Kelas kreatif.png') }}"
+    class="w-full h-56 object-cover">
+
+    <div class="p-6 flex flex-col flex-1">
+
+        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm w-fit">
+            Pendaftaran Dibuka
+        </span>
+
+        <p class="mt-4 text-gray-500">
+            📅 10 Agustus 2026
+        </p>
+
+        <p class="text-gray-500">
+            🕘 13.00 WIB
+        </p>
+
+        <h3 class="text-2xl font-bold mt-3 text-amber-900">
+            Kelas Kreatif Literasi
+        </h3>
+
+        <p class="text-gray-600 mt-3">
+            📍 SD Negeri 14 Pontianak
+        </p>
+
+        <a href="{{ route('relawan.show', $item->id) }}"
+        class="mt-auto block w-full bg-gradient-to-r from-[#6B240C] via-[#B45309] to-[#D97706] text-white py-3 rounded-xl font-semibold text-center hover:scale-105 duration-300">
+            Lihat Detail & Daftar
+        </a>
+
+    </div>
+
+</div>
+
+</div>
+
+@endforeach
+
+</div>
+
+
+
+</section>
 
 
 
 </body>
-
 </html>
