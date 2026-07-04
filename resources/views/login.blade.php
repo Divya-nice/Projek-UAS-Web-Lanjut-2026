@@ -1,211 +1,200 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - GEMAKSARA</title>
+@extends('layouts.app')
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+@section('title','Login - GemaAksara')
 
-    <style>
-        :root{
-            --brown:#8B5E3C;
-            --brown-dark:#5C4033;
-            --cream:#F8F1E5;
-        }
+@section('content')
 
-        body{
-            background:var(--cream);
-            font-family:'Segoe UI',sans-serif;
-        }
+<div class="h-screen bg-gradient-to-br from-[#FFF9F0] via-[#FFF6E8] to-[#F7EFE5] flex items-center justify-center overflow-hidden px-6">
 
-        .login-card{
-            border:none;
-            border-radius:20px;
-            overflow:hidden;
-            box-shadow:0 15px 35px rgba(0,0,0,.12);
-        }
+    <div class="w-full max-w-[860px] h-[520px] bg-white rounded-[30px] shadow-2xl overflow-hidden grid grid-cols-[45%_55%]">
 
-        .left-side{
-            background:white;
-            padding:50px;
-        }
+        <!-- ================= PANEL KIRI ================= -->
 
-        .right-side{
-            background:linear-gradient(135deg,#8B5E3C,#5C4033);
-            color:white;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            flex-direction:column;
-            padding:40px;
-        }
+        <div class="bg-gradient-to-br from-[#F8E7C8] to-[#F4D8A8] p-6 flex flex-col">
 
-        .logo{
-            width:90px;
-            margin-bottom:15px;
-        }
+            <!-- Logo -->
 
-        .form-control{
-            border-radius:10px;
-            padding:12px;
-        }
+            <div class="flex items-center gap-2">
 
-        .btn-login{
-            background:#8B5E3C;
-            color:white;
-            border:none;
-            border-radius:10px;
-            padding:12px;
-            font-weight:bold;
-        }
+                <img
+                    src="{{ asset('images/buku.png.png') }}"
+                    class="w-7 h-7 object-contain">
 
-        .btn-login:hover{
-            background:#5C4033;
-            color:white;
-        }
+                <h2 class="text-[20px] font-bold text-[#5B220B]">
+                    GemaAksara
+                </h2>
 
-        a{
-            color:#8B5E3C;
-            text-decoration:none;
-        }
+            </div>
 
-        a:hover{
-            text-decoration:underline;
-        }
-    </style>
+            <!-- Heading -->
 
-</head>
-<body>
+            <div class="mt-6">
 
-<div class="container py-5">
+                <h1 class="font-black text-[32px] leading-[36px] text-[#3D2314]">
 
-<div class="row justify-content-center">
+                    Membaca hari ini,
 
-<div class="col-lg-10">
+                    <span class="block text-[#C76713]">
+                        memimpin
+                    </span>
 
-<div class="card login-card">
+                    <span class="block text-[#C76713]">
+                        masa depan.
+                    </span>
 
-<div class="row g-0">
+                </h1>
 
-<div class="col-md-6 left-side">
+                <div class="w-14 h-1 bg-[#D97706] rounded-full mt-4"></div>
 
-<h2 class="fw-bold mb-2">
-Login Admin
-</h2>
+                <p class="mt-5 text-[15px] leading-7 text-[#5A4638]">
 
-<p class="text-muted mb-4">
-Silakan masuk ke akun GEMAKSARA Anda.
-</p>
+                    Bergabunglah sebagai relawan literasi dan
+                    wujudkan generasi yang gemar membaca
+                    bersama GemaAksara.
 
-@if(session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
+                </p>
 
-<form method="POST" action="{{ route('login.process') }}">
+            </div>
 
-@csrf
+            <!-- Gambar -->
 
-<div class="mb-3">
+            <div class="mt-4 pd-5">
 
-<label class="form-label">
-Email
-</label>
+                <img
+                    src="{{ asset('images/ilustrasi buku.png') }}"
+                    class="w-full h-[180px] object-cover rounded-[26px] shadow-lg">
 
-<input
-type="email"
-name="email"
-class="form-control @error('email') is-invalid @enderror"
-value="{{ old('email') }}"
-required>
+            </div>
 
-@error('email')
-<div class="invalid-feedback">
-{{ $message }}
-</div>
-@enderror
+        </div>
 
-</div>
 
-<div class="mb-4">
+ <!-- ================= PANEL KANAN ================= -->
 
-<label class="form-label">
-Password
-</label>
+<div class="bg-white px-8 pt-3 pb-5 flex flex-col">
+    <!-- Logo -->
 
-<input
-type="password"
-name="password"
-class="form-control @error('password') is-invalid @enderror"
-required>
+    <div class="text-center">
 
-@error('password')
-<div class="invalid-feedback">
-{{ $message }}
-</div>
-@enderror
+        <img
+            src="{{ asset('images/buku.png.png') }}"
+            class="w-11 h-11 mx-auto object-contain">
 
-</div>
+        <h2 class="mt-2 text-[34px] font-black text-[#3A241B]">
+            GemaAksara
+        </h2>
 
-<div class="d-grid">
+        <p class="mt-1 text-[15px] text-stone-500">
+            Masuk sebagai relawan literasi
+        </p>
 
-<button class="btn btn-login">
+    </div>
 
-<i class="bi bi-box-arrow-in-right"></i>
+    <form action="/login" method="POST" class="mt-5">
 
-Login
+        @csrf
 
-</button>
+        <!-- Email -->
 
-</div>
+        <div>
 
-</form>
+            <label class="block text-[15px] font-semibold text-stone-700 mb-2">
+                Email
+            </label>
 
-<div class="text-center mt-4">
+            <div class="flex items-center border border-stone-300 rounded-xl overflow-hidden">
 
-Belum punya akun?
+                
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Masukkan email"
+                    class="flex-1 px-4 py-3 outline-none text-[15px]">
 
-<a href="{{ route('register') }}">
+            </div>
 
-Daftar sekarang
+        </div>
+
+        <!-- Password -->
+
+        <div class="mt-4">
+
+            <label class="block text-[15px] font-semibold text-stone-700 mb-2">
+                Password
+            </label>
+
+            <div class="flex items-center border border-stone-300 rounded-xl overflow-hidden">
+
+               
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Masukkan password"
+                    class="flex-1 px-4 py-3 outline-none text-[15px]">
+
+            </div>
+
+        </div>
+
+        <!-- Opsi -->
+
+        <div class="flex justify-between items-center mt-4 text-[14px]">
+
+            <label class="flex items-center gap-2 text-stone-600">
+
+                <input type="checkbox" class="rounded">
+
+                Ingat saya
+
+            </label>
+
+            <a href="#" class="text-[#C56614] hover:underline">
+
+                Lupa password?
+
+            </a>
+
+        </div>
+
+        <!-- Tombol -->
+
+        <button
+            type="submit"
+            class="mt-5 w-full h-12 rounded-xl font-bold text-white text-lg bg-gradient-to-r from-[#6B240C] via-[#A3470A] to-[#D97706] shadow-lg hover:opacity-95">
+
+            Masuk
+
+        </button>
+
+    </form>
+
+    <!-- Register -->
+
+    <div class="flex items-center mt-3 mb-2">
+
+        <div class="flex-1 border-t border-stone-300"></div>
+
+        <span class="px-3 text-[13px] text-stone-400">
+
+            Belum memiliki akun?
+
+        </span>
+
+        <div class="flex-1 border-t border-stone-300"></div>
+
+    </div>
+
+    <a
+    href="/register"
+    class="block w-full text-center py-1 rounded-xl border-1 border-[#D97706] text-[#C56614] font-bold hover:bg-amber-50 transition">
+
+    Daftar Sekarang
 
 </a>
 
 </div>
-
-</div>
-
-<div class="col-md-6 right-side">
-<img
-src="{{ asset('images/books.jpeg') }}"
-alt="Logo GEMAKSARA"
-class="img-fluid mb-4"
-style="width:220px;height:220px;object-fit:contain;">
-
-<h2 class="fw-bold">
-GEMAKSARA
-</h2>
-
-<p class="text-center mt-3">
-
-Gerakan Membaca Bersama Masyarakat
-
-</p>
-
 </div>
 
 </div>
 
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</body>
-</html>
+@endsection
