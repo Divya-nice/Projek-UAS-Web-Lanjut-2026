@@ -390,9 +390,7 @@
     src="{{ asset('images/books.jpeg') }}"
     alt="Tumpukan buku klasik">
     
-    />
-
-    <div class="brand-name">Gema Aksara</div>
+    <div class="brand-name">GemaAksara</div>
     <p class="brand-tagline">Platform komunitas pecinta buku untuk berdiskusi, membaca bersama, dan mengikuti berbagai kegiatan literasi.</p>
 
     <div class="dots">
@@ -412,10 +410,10 @@
   <!-- RIGHT PANEL -->
   <div class="panel-right" style="position:relative;">
 
-    <div class="success-overlay" id="successOverlay">
+    <div class="succss-overlay" id="successOverlay">
       <div class="success-icon">✓</div>
       <div class="success-text">Akun Berhasil Dibuat!</div>
-      <div class="success-sub">Selamat datang di komunitas Gema Aksara 🎉</div>
+      <div class="success-sub">Selamat datang di komunitas Gema Aksara </div>
     </div>
 
     <div class="form-header">
@@ -427,7 +425,7 @@
       <div class="progress-fill" id="progressFill"></div>
     </div>
 
-    <form id="registerForm" action="/register" method="POST" novalidate>
+    <form id="registerForm" action="{{ route('register.process') }}" method="POST" novalidate>
       @csrf
 
       <div class="field">
