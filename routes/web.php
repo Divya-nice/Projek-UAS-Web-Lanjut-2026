@@ -5,7 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\BerandaController;
 use App\Http\Controllers\Admin\KegiatanController;
 
-// Halaman awal
+// ================= HALAMAN AWAL =================
+
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -30,8 +31,15 @@ Route::get('/beranda', [BerandaController::class, 'index'])
 
 Route::resource('kegiatan', KegiatanController::class);
 
-// ================= RELAWAN =================
-
 Route::get('/verifikasi-relawan', function () {
     return view('admin.relawan.index');
 })->name('relawan.index');
+
+
+// ================= RELAWAN =================
+
+Route::view('/relawan', 'relawan.index');
+
+Route::view('/relawan/detail', 'relawan.show');
+
+Route::view('/relawan/sukses', 'relawan.sukses');
