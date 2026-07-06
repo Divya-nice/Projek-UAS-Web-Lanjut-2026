@@ -99,10 +99,9 @@ Beranda Kegiatan
 
 
 
-<a href="">
-
-Jadwal Saya
-
+<a href="/relawan/jadwal"
+class="hover:text-yellow-300">
+    Jadwal Saya
 </a>
 
 
