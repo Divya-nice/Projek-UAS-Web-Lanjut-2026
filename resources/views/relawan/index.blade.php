@@ -76,28 +76,31 @@ Jadwal Saya
 
 
 
-<div class="flex items-center gap-3">
+<div class="flex items-center gap-6">
 
-Halo, Relawan
+    <div class="flex items-center">
 
-<div class="w-8 h-8
+        <span class="font-medium">
+            Halo, Relawan
+        </span>
 
-rounded-full
+    </div>
 
-bg-amber-700
 
-flex
+    <form action="/logout" method="POST">
+        @csrf
 
-justify-center
+        <button
+            type="submit"
+            class="bg-white text-amber-900 px-4 py-2 rounded-xl font-semibold hover:bg-amber-100 transition">
 
-items-center">
+            Logout
 
-👤
+        </button>
+
+    </form>
 
 </div>
-
-</div>
-
 
 </nav>
 
