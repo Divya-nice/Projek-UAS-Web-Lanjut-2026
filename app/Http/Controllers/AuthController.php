@@ -27,24 +27,24 @@ class AuthController extends Controller
     */
 
     public function register(Request $request)
-{
-    $request->validate([
-        'nama' => 'required|max:100',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:8|confirmed',
-    ]);
+    {
+        $request->validate([
+            'nama' => 'required|max:100',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+        ]);
 
-    User::create([
-        'name' => $request->nama,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-        'role' => 'relawan',
-    ]);
+        User::create([
+            'name' => $request->nama,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'relawan',
+        ]);
 
-    return redirect()
-        ->route('login')
-        ->with('success', 'Akun berhasil dibuat. Silakan login.');
-}
+        return redirect()
+            ->route('login')
+            ->with('success', 'Akun berhasil dibuat. Silakan login.');
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -67,22 +67,27 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
         if (Auth::attempt([
             'email' => $request->email,
-            'password' => $request->password
+            'password' => $request->password,
         ])) {
 
             $request->session()->regenerate();
 
-            return redirect()->route('beranda');
+            // Cek role pengguna
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('beranda');
+            }
+
+            return redirect()->route('relawan.beranda');
         }
 
         return back()
             ->withErrors([
-                'email' => 'Email atau password salah.'
+                'email' => 'Email atau password salah.',
             ])
             ->withInput();
     }
