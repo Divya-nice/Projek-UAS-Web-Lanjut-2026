@@ -13,86 +13,59 @@
 
 <body class="bg-[#F7F2EB] pt-20 relative overflow-x-hidden">
 
-<!-- ================= NAVBAR ================= -->
-
+<!-- Navbar -->
 <nav class="fixed top-0 left-0 w-full z-50
-
 bg-gradient-to-r
 from-amber-950
 via-amber-900
 to-yellow-800
-
 text-white
-
 px-12
 py-4
-
 flex
 justify-between
 items-center
-
 shadow-lg">
 
     <div class="flex items-center gap-3">
-
-        <img src="{{ asset('images/buku.png') }}"
-
-        class="w-8">
-
+        <img src="{{ asset('images/buku.png') }}" class="w-8">
         <h1 class="font-bold text-2xl">
-
             GemaAksara
-
         </h1>
-
     </div>
 
+<div class="flex gap-14 font-medium">
 
+    <a href="/relawan" class="hover:text-yellow-300 transition">
+        Beranda Kegiatan
+    </a>
 
+    <a href="/relawan/jadwal" class="text-yellow-300">
+        Jadwal Saya
+    </a>
 
-    <div class="flex gap-14 font-medium">
+</div>
 
-        <a href="/relawan"
+    <div class="flex items-center gap-6">
 
-        class="hover:text-yellow-300 duration-300">
-
-            Beranda Kegiatan
-
-        </a>
-
-        <a href="/relawan/jadwal"
-
-        class="text-yellow-300">
-
-            Jadwal Saya
-
-        </a>
-
-    </div>
-
-
-
-
-
-    <div class="flex items-center gap-3">
-
-        Halo, Relawan
-
-        <div class="w-8 h-8
-
-        rounded-full
-
-        bg-amber-700
-
-        flex
-
-        justify-center
-
-        items-center">
-
-            👤
-
+        <div class="flex items-center">
+            <span class="font-medium">
+                Halo, Relawan
+            </span>
         </div>
+
+        <form action="/logout" method="POST">
+            @csrf
+
+            <button
+                type="submit"
+                class="bg-white text-amber-900 px-4 py-2 rounded-xl font-semibold hover:bg-amber-100 transition">
+
+                Logout
+
+            </button>
+
+        </form>
 
     </div>
 
@@ -322,23 +295,7 @@ Berikut merupakan daftar kegiatan yang pernah Anda daftar sebagai relawan.
     Selamat! Anda telah lolos seleksi sebagai relawan. Silakan hadir sesuai jadwal dan lokasi yang telah ditentukan.
 </p>
 
-            <button
-class="mt-6
-bg-gradient-to-r
-from-[#6B240C]
-via-[#B45309]
-to-[#D97706]
-text-white
-px-6
-py-3
-rounded-xl
-shadow-lg
-hover:scale-105
-duration-300">
 
-🎫 Lihat Tiket & Detail
-
-</button>
         </div>
 
     </div>
