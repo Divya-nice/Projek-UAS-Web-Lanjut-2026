@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\BerandaController;
 use App\Http\Controllers\Admin\KegiatanController;
+use App\Http\Controllers\Admin\RelawanController;
 
 // ================= HALAMAN AWAL =================
 
@@ -31,9 +32,14 @@ Route::get('/beranda', [BerandaController::class, 'index'])
 
 Route::resource('kegiatan', KegiatanController::class);
 
-Route::get('/verifikasi-relawan', function () {
-    return view('admin.relawan.index');
-})->name('relawan.index');
+Route::get('/verifikasi-relawan', [RelawanController::class, 'index'])
+    ->name('relawan.index');
+
+Route::put('/relawan/{id}/terima', [RelawanController::class, 'terima'])
+    ->name('relawan.terima');
+
+Route::put('/relawan/{id}/tolak', [RelawanController::class, 'tolak'])
+    ->name('relawan.tolak');
 
 // ================= RELAWAN =================
 
