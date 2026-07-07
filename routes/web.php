@@ -7,18 +7,12 @@ use App\Http\Controllers\Admin\KegiatanController;
 
 // Halaman awal
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('login');
 });
 
-// ================= AUTH =================
+Route::view('/login', 'login')->name('login');
 
-// Login
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.process');
-
-// Register
-Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-Route::post('/register', [AuthController::class, 'register'])->name('register.process');
+Route::view('/register', 'register')->name('register');
 
 // Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -34,12 +28,6 @@ Route::resource('kegiatan', KegiatanController::class);
 
 // ================= RELAWAN =================
 
-use App\Http\Controllers\Admin\RelawanController;
-
-Route::get('/verifikasi-relawan', [RelawanController::class, 'index'])->name('relawan.index');
-Route::put('/relawan/{id}/terima', [RelawanController::class, 'terima'])->name('relawan.terima');
-Route::put('/relawan/{id}/tolak', [RelawanController::class, 'tolak'])->name('relawan.tolak');
-
-// Form pendaftaran relawan (publik)
-Route::get('/daftar-relawan', [RelawanController::class, 'create'])->name('relawan.create');
-Route::post('/daftar-relawan', [RelawanController::class, 'store'])->name('relawan.store');
+Route::get('/verifikasi-relawan', function () {
+    return view('admin.relawan.index');
+})->name('relawan.index');
