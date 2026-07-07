@@ -7,158 +7,242 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
 
     <div>
+
         <h2 class="page-title mb-1">
             Edit Kegiatan
         </h2>
 
         <p class="text-muted">
-            Perbarui informasi kegiatan GEMAKSARA.
+            Perbarui data kegiatan GEMAKSARA.
         </p>
+
     </div>
 
     <a href="{{ route('kegiatan.index') }}" class="btn btn-secondary">
+
         <i class="bi bi-arrow-left"></i>
+
         Kembali
+
     </a>
 
 </div>
 
 <div class="card-custom">
 
-    <div class="card-header-custom">
-        <i class="bi bi-pencil-square"></i>
-        Form Edit Kegiatan
-    </div>
+<div class="card-header-custom">
 
-    <div class="card-body-custom">
+<i class="bi bi-pencil-fill"></i>
 
-        <form action="{{ route('kegiatan.update',$kegiatan->id_kegiatan) }}" method="POST">
+Form Edit Kegiatan
 
-            @csrf
-            @method('PUT')
+</div>
 
-            <div class="mb-3">
+<div class="card-body-custom">
 
-                <label class="form-label fw-semibold">
-                    Nama Kegiatan
-                </label>
+<form action="{{ route('kegiatan.update', $kegiatan->id_kegiatan) }}" method="POST" enctype="multipart/form-data">
 
-                <input
-                    type="text"
-                    name="nama_kegiatan"
-                    class="form-control @error('nama_kegiatan') is-invalid @enderror"
-                    value="{{ old('nama_kegiatan',$kegiatan->nama_kegiatan) }}">
+@csrf
+@method('PUT')
 
-                @error('nama_kegiatan')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+<div class="mb-3">
 
-            </div>
+<label class="form-label fw-semibold">
 
-            <div class="mb-3">
+Nama Kegiatan
 
-                <label class="form-label fw-semibold">
-                    Deskripsi
-                </label>
+</label>
 
-                <textarea
-                    name="deskripsi"
-                    rows="5"
-                    class="form-control @error('deskripsi') is-invalid @enderror">{{ old('deskripsi',$kegiatan->deskripsi) }}</textarea>
+<input
+type="text"
+name="nama_kegiatan"
+class="form-control @error('nama_kegiatan') is-invalid @enderror"
+value="{{ old('nama_kegiatan', $kegiatan->nama_kegiatan) }}">
 
-                @error('deskripsi')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+@error('nama_kegiatan')
+<div class="invalid-feedback">
+{{ $message }}
+</div>
+@enderror
 
-            </div>
+</div>
 
-            <div class="row">
+<div class="mb-3">
 
-                <div class="col-md-6 mb-3">
+<label class="form-label fw-semibold">
 
-                    <label class="form-label fw-semibold">
-                        Tanggal
-                    </label>
+Deskripsi
 
-                    <input
-                        type="date"
-                        name="tanggal"
-                        class="form-control @error('tanggal') is-invalid @enderror"
-                        value="{{ old('tanggal',$kegiatan->tanggal) }}">
+</label>
 
-                    @error('tanggal')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
+<textarea
+name="deskripsi"
+rows="5"
+class="form-control @error('deskripsi') is-invalid @enderror">{{ old('deskripsi', $kegiatan->deskripsi) }}</textarea>
 
-                </div>
+@error('deskripsi')
+<div class="invalid-feedback">
+{{ $message }}
+</div>
+@enderror
 
-                <div class="col-md-6 mb-3">
+</div>
 
-                    <label class="form-label fw-semibold">
-                        Jam Mulai
-                    </label>
+<div class="row">
 
-                    <input
-                        type="time"
-                        name="jam_mulai"
-                        class="form-control @error('jam_mulai') is-invalid @enderror"
-                        value="{{ old('jam_mulai',$kegiatan->jam_mulai) }}">
+<div class="col-md-6 mb-3">
 
-                    @error('jam_mulai')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
+<label class="form-label fw-semibold">
 
-                </div>
+Tanggal
 
-            </div>
+</label>
 
-            <div class="mb-4">
+<input
+type="date"
+name="tanggal"
+class="form-control @error('tanggal') is-invalid @enderror"
+value="{{ old('tanggal', \Carbon\Carbon::parse($kegiatan->tanggal)->format('Y-m-d')) }}">
 
-                <label class="form-label fw-semibold">
-                    Lokasi
-                </label>
+@error('tanggal')
+<div class="invalid-feedback">
+{{ $message }}
+</div>
+@enderror
 
-                <input
-                    type="text"
-                    name="lokasi"
-                    class="form-control @error('lokasi') is-invalid @enderror"
-                    value="{{ old('lokasi',$kegiatan->lokasi) }}">
+</div>
 
-                @error('lokasi')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+<div class="col-md-6 mb-3">
 
-            </div>
+<label class="form-label fw-semibold">
 
-            <div class="text-end">
+Jam Mulai
 
-                <a href="{{ route('kegiatan.index') }}" class="btn btn-outline-secondary">
-                    Batal
-                </a>
+</label>
 
-                <button type="submit" class="btn btn-brown">
+<input
+type="time"
+name="jam_mulai"
+class="form-control @error('jam_mulai') is-invalid @enderror"
+value="{{ old('jam_mulai', \Carbon\Carbon::parse($kegiatan->jam_mulai)->format('H:i')) }}">
 
-                    <i class="bi bi-check-circle-fill"></i>
+@error('jam_mulai')
+<div class="invalid-feedback">
+{{ $message }}
+</div>
+@enderror
 
-                    Update Kegiatan
+</div>
 
-                </button>
+</div>
 
-            </div>
+<div class="row">
 
-        </form>
+<div class="col-md-6 mb-3">
 
-    </div>
+<label class="form-label fw-semibold">
+
+Lokasi
+
+</label>
+
+<input
+type="text"
+name="lokasi"
+class="form-control @error('lokasi') is-invalid @enderror"
+value="{{ old('lokasi', $kegiatan->lokasi) }}">
+
+@error('lokasi')
+<div class="invalid-feedback">
+{{ $message }}
+</div>
+@enderror
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Kuota Relawan
+
+</label>
+
+<input
+type="number"
+name="kuota_relawan"
+min="1"
+class="form-control @error('kuota_relawan') is-invalid @enderror"
+value="{{ old('kuota_relawan', $kegiatan->kuota_relawan) }}">
+
+@error('kuota_relawan')
+<div class="invalid-feedback">
+{{ $message }}
+</div>
+@enderror
+
+</div>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label fw-semibold">
+
+Gambar Kegiatan
+
+</label>
+
+@if ($kegiatan->gambar)
+<div class="mb-2">
+<img src="{{ asset('storage/' . $kegiatan->gambar) }}"
+alt="{{ $kegiatan->nama_kegiatan }}"
+style="max-width: 200px; border-radius: 8px;">
+</div>
+@endif
+
+<input
+type="file"
+name="gambar"
+accept="image/png, image/jpeg, image/jpg"
+class="form-control @error('gambar') is-invalid @enderror">
+
+<small class="text-muted">
+Kosongkan jika tidak ingin mengganti gambar. Format: JPG, JPEG, PNG. Maksimal 2MB.
+</small>
+
+@error('gambar')
+<div class="invalid-feedback d-block">
+{{ $message }}
+</div>
+@enderror
+
+</div>
+
+<div class="text-end">
+
+<a href="{{ route('kegiatan.index') }}"
+class="btn btn-outline-secondary">
+
+Batal
+
+</a>
+
+<button
+type="submit"
+class="btn btn-brown">
+
+<i class="bi bi-save-fill"></i>
+
+Simpan Perubahan
+
+</button>
+
+</div>
+
+</form>
+
+</div>
 
 </div>
 

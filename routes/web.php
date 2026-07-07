@@ -35,13 +35,16 @@ Route::get('/verifikasi-relawan', function () {
     return view('admin.relawan.index');
 })->name('relawan.index');
 
-
 // ================= RELAWAN =================
 
-Route::view('/relawan', 'relawan.index');
+Route::view('/relawan', 'relawan.index')
+    ->name('relawan.beranda');
 
-Route::view('/relawan/detail', 'relawan.show');
+Route::view('/relawan/detail', 'relawan.show')
+    ->name('relawan.detail');
 
-Route::view('/relawan/sukses', 'relawan.sukses');
+Route::view('/relawan/sukses', 'relawan.sukses')
+    ->name('relawan.sukses');
 
-Route::view('/relawan/jadwal', 'relawan.jadwal');
+Route::view('/relawan/jadwal', 'relawan.jadwal')
+    ->name('relawan.jadwal');

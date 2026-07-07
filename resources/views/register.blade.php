@@ -410,7 +410,7 @@
   <!-- RIGHT PANEL -->
   <div class="panel-right" style="position:relative;">
 
-    <div class="succss-overlay" id="successOverlay">
+    <div class="success-overlay" id="successOverlay">
       <div class="success-icon">✓</div>
       <div class="success-text">Akun Berhasil Dibuat!</div>
       <div class="success-sub">Selamat datang di komunitas Gema Aksara </div>

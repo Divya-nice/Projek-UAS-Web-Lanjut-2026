@@ -40,7 +40,7 @@ Form Tambah Kegiatan
 
 <div class="card-body-custom">
 
-<form action="{{ route('kegiatan.store') }}" method="POST">
+<form action="{{ route('kegiatan.store') }}" method="POST" enctype="multipart/form-data">
 
 @csrf
 
@@ -135,7 +135,9 @@ value="{{ old('jam_mulai') }}">
 
 </div>
 
-<div class="mb-4">
+<div class="row">
+
+<div class="col-md-6 mb-3">
 
 <label class="form-label fw-semibold">
 
@@ -151,6 +153,58 @@ value="{{ old('lokasi') }}">
 
 @error('lokasi')
 <div class="invalid-feedback">
+{{ $message }}
+</div>
+@enderror
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label fw-semibold">
+
+Kuota Relawan
+
+</label>
+
+<input
+type="number"
+name="kuota_relawan"
+min="1"
+class="form-control @error('kuota_relawan') is-invalid @enderror"
+value="{{ old('kuota_relawan') }}"
+placeholder="Contoh: 10">
+
+@error('kuota_relawan')
+<div class="invalid-feedback">
+{{ $message }}
+</div>
+@enderror
+
+</div>
+
+</div>
+
+<div class="mb-4">
+
+<label class="form-label fw-semibold">
+
+Gambar Kegiatan
+
+</label>
+
+<input
+type="file"
+name="gambar"
+accept="image/png, image/jpeg, image/jpg"
+class="form-control @error('gambar') is-invalid @enderror">
+
+<small class="text-muted">
+Format: JPG, JPEG, PNG. Maksimal 2MB.
+</small>
+
+@error('gambar')
+<div class="invalid-feedback d-block">
 {{ $message }}
 </div>
 @enderror

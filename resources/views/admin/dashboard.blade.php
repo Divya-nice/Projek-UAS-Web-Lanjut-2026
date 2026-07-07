@@ -25,7 +25,7 @@
                     </h6>
 
                     <h2 class="fw-bold mb-0">
-                        {{ $totalKegiatan ?? 12 }}
+                        {{ $totalKegiatan }}
                     </h2>
                 </div>
 
@@ -48,7 +48,7 @@
                     </h6>
 
                     <h2 class="fw-bold mb-0">
-                        {{ $totalRelawan ?? 45 }}
+                        {{ $totalRelawan }}
                     </h2>
                 </div>
 
@@ -71,7 +71,7 @@
                     </h6>
 
                     <h2 class="fw-bold mb-0">
-                        {{ $pendingRelawan ?? 8 }}
+                        {{ $pendingRelawan }}
                     </h2>
                 </div>
 
@@ -94,7 +94,7 @@
                     </h6>
 
                     <h2 class="fw-bold mb-0">
-                        {{ $kegiatanAktif ?? 6 }}
+                        {{ $kegiatanAktif }}
                     </h2>
                 </div>
 
@@ -140,37 +140,33 @@
 
                     <tbody>
 
+                    @forelse ($kegiatanTerbaru as $kegiatan)
                     <tr>
 
-                        <td>Gemar Membaca Buku</td>
+                        <td>{{ $kegiatan->nama_kegiatan }}</td>
 
-                        <td>25 Juni 2026</td>
+                        <td>{{ $kegiatan->tanggal->format('d F Y') }}</td>
 
-                        <td>Pontianak</td>
+                        <td>{{ $kegiatan->lokasi }}</td>
 
                         <td>
-                            <span class="badge bg-success">
-                                Aktif
-                            </span>
+                            @if ($kegiatan->status == 'Aktif')
+                                <span class="badge bg-success">Aktif</span>
+                            @elseif ($kegiatan->status == 'Akan Datang')
+                                <span class="badge bg-warning text-dark">Akan Datang</span>
+                            @else
+                                <span class="badge bg-secondary">{{ $kegiatan->status }}</span>
+                            @endif
                         </td>
 
                     </tr>
-
+                    @empty
                     <tr>
-
-                        <td>Kelas Ceria Mewarnai</td>
-
-                        <td>30 Juni 2026</td>
-
-                        <td>Kubu Raya</td>
-
-                        <td>
-                            <span class="badge bg-warning text-dark">
-                                Akan Datang
-                            </span>
+                        <td colspan="4" class="text-muted text-center py-3">
+                            Belum ada kegiatan.
                         </td>
-
                     </tr>
+                    @endforelse
 
                     </tbody>
 
@@ -196,41 +192,29 @@
 
             <div class="card-body-custom">
 
-                <div class="mb-4">
+                @forelse ($aktivitasRelawan as $rel)
+                    <div class="mb-4">
 
-                    <strong>Budi Santoso</strong>
+                        <strong>{{ $rel->nama }}</strong>
 
-                    <br>
+                        <br>
 
-                    <small class="text-muted">
-                        Mendaftar sebagai relawan.
-                    </small>
+                        <small class="text-muted">
+                            @if ($rel->status == 'Pending')
+                                Menunggu verifikasi admin.
+                            @elseif ($rel->status == 'Diterima')
+                                Telah diverifikasi sebagai relawan.
+                            @else
+                                Pendaftaran ditolak.
+                            @endif
+                        </small>
 
-                </div>
-
-                <div class="mb-4">
-
-                    <strong>Siti Aminah</strong>
-
-                    <br>
-
-                    <small class="text-muted">
-                        Menunggu verifikasi admin.
-                    </small>
-
-                </div>
-
-                <div>
-
-                    <strong>Admin</strong>
-
-                    <br>
-
-                    <small class="text-muted">
-                        Menambahkan kegiatan baru.
-                    </small>
-
-                </div>
+                    </div>
+                @empty
+                    <p class="text-muted mb-0">
+                        Belum ada aktivitas relawan.
+                    </p>
+                @endforelse
 
             </div>
 
