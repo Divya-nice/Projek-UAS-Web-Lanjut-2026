@@ -34,6 +34,61 @@ shadow-lg">
         </h1>
     </div>
 
+<div class="flex items-center gap-3">
+
+<img src="{{ asset('images/buku.png') }}"
+
+class="w-8">
+
+<h1 class="font-bold text-2xl">
+
+GemaAksara
+
+</h1>
+
+</div>
+
+<div class="flex gap-14 font-medium">
+
+<a href="/relawan"
+
+class="hover:text-yellow-300">
+
+Beranda Kegiatan
+
+</a>
+
+
+<a href="">
+
+Jadwal Saya
+
+</a>
+
+</div>
+
+<div class="flex items-center gap-6">
+
+    <div class="flex items-center">
+
+        <span class="font-medium">
+            Halo, Relawan
+        </span>
+
+    </div>
+
+    <form action="/logout" method="POST">
+        @csrf
+
+        <button
+            type="submit"
+            class="bg-white text-amber-900 px-4 py-2 rounded-xl font-semibold hover:bg-amber-100 transition">
+
+            Logout
+
+        </button>
+
+    </form>
     <div class="flex gap-14 font-medium">
 
         <a href="/relawan" class="text-yellow-300">
@@ -70,11 +125,6 @@ shadow-lg">
     </div>
 
 </nav>
-
-
-
-
-
 
 <!-- HERO -->
 
@@ -172,9 +222,6 @@ Jelajahi Kegiatan
 <img src="{{ asset('images/1.png') }}"
 
 class="w-80">
-
-
-
 
 </div>
 
