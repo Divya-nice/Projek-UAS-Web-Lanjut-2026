@@ -15,6 +15,12 @@
     </div>
 </div>
 
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
+
 <div class="card-custom">
 
     <div class="card-header-custom">
@@ -28,6 +34,7 @@
             <div class="col-md-5">
                 <input
                     type="text"
+                    id="cariRelawan"
                     class="form-control"
                     placeholder="Cari nama relawan...">
             </div>
@@ -35,7 +42,7 @@
 
         <div class="table-responsive">
 
-            <table class="table table-hover align-middle text-center">
+            <table class="table table-hover align-middle text-center" id="tabelRelawan">
 
                 <thead>
                     <tr>
@@ -50,98 +57,72 @@
 
                 <tbody>
 
+                    @forelse ($relawan as $item)
                     <tr>
-                        <td>1</td>
+                        <td>{{ $loop->iteration + ($relawan->currentPage() - 1) * $relawan->perPage() }}</td>
 
-                        <td class="fw-semibold">
-                            Andi Saputra
+                        <td class="fw-semibold nama-relawan">
+                            {{ $item->nama }}
                         </td>
 
-                        <td>andi@gmail.com</td>
+                        <td>{{ $item->email }}</td>
 
-                        <td>081234567890</td>
+                        <td>{{ $item->no_hp }}</td>
 
                         <td>
-                            <span class="badge bg-warning text-dark px-3 py-2">
-                                Pending
-                            </span>
+                            @if ($item->status == 'Pending')
+                                <span class="badge bg-warning text-dark px-3 py-2">Pending</span>
+                            @elseif ($item->status == 'Diterima')
+                                <span class="badge bg-success px-3 py-2">Diterima</span>
+                            @else
+                                <span class="badge bg-danger px-3 py-2">Ditolak</span>
+                            @endif
                         </td>
 
                         <td>
                             <div class="d-flex justify-content-center align-items-center gap-2">
 
-                                <button class="btn btn-info btn-sm px-3">
+                                <button
+                                    type="button"
+                                    class="btn btn-info btn-sm px-3"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalDetail{{ $item->id_relawan }}">
                                     <i class="bi bi-eye-fill"></i> Detail
                                 </button>
 
-                                <button class="btn btn-success btn-sm px-3">
-                                    <i class="bi bi-check-circle-fill"></i> Terima
-                                </button>
+                                @if ($item->status == 'Pending')
 
-                                <button class="btn btn-danger btn-sm px-3">
-                                    <i class="bi bi-x-circle-fill"></i> Tolak
-                                </button>
+                                <form action="{{ route('relawan.terima', $item->id_relawan) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-success btn-sm px-3"
+                                        onclick="return confirm('Terima relawan ini?')">
+                                        <i class="bi bi-check-circle-fill"></i> Terima
+                                    </button>
+                                </form>
+
+                                <form action="{{ route('relawan.tolak', $item->id_relawan) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-danger btn-sm px-3"
+                                        onclick="return confirm('Tolak relawan ini?')">
+                                        <i class="bi bi-x-circle-fill"></i> Tolak
+                                    </button>
+                                </form>
+
+                                @endif
 
                             </div>
                         </td>
 
                     </tr>
-
+                    @empty
                     <tr>
-
-                        <td>2</td>
-
-                        <td class="fw-semibold">
-                            Siti Rahma
+                        <td colspan="6" class="text-muted py-4">
+                            Belum ada data relawan yang mendaftar.
                         </td>
-
-                        <td>siti@gmail.com</td>
-
-                        <td>082233445566</td>
-
-                        <td>
-                            <span class="badge bg-success px-3 py-2">
-                                Diterima
-                            </span>
-                        </td>
-
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-info btn-sm px-3">
-                                    <i class="bi bi-eye-fill"></i> Detail
-                                </button>
-                            </div>
-                        </td>
-
                     </tr>
-
-                    <tr>
-
-                        <td>3</td>
-
-                        <td class="fw-semibold">
-                            Budi Hartono
-                        </td>
-
-                        <td>budi@gmail.com</td>
-
-                        <td>081111111111</td>
-
-                        <td>
-                            <span class="badge bg-danger px-3 py-2">
-                                Ditolak
-                            </span>
-                        </td>
-
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-info btn-sm px-3">
-                                    <i class="bi bi-eye-fill"></i> Detail
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
+                    @endforelse
 
                 </tbody>
 
@@ -149,8 +130,89 @@
 
         </div>
 
+        <div class="mt-3">
+            {{ $relawan->links() }}
+        </div>
+
     </div>
 
 </div>
 
+{{-- ================= MODAL DETAIL RELAWAN (di luar tabel) ================= --}}
+@foreach ($relawan as $item)
+<div class="modal fade" id="modalDetail{{ $item->id_relawan }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header" style="background-color:#8B5E34; color:#fff;">
+                <h5 class="modal-title">
+                    <i class="bi bi-person-vcard-fill me-2"></i>Detail Relawan
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body text-start">
+
+                <table class="table table-borderless mb-0">
+                    <tr>
+                        <th width="150">Nama</th>
+                        <td>: {{ $item->nama }}</td>
+                    </tr>
+                    <tr>
+                        <th>Jenis Kelamin</th>
+                        <td>: {{ $item->jenis_kelamin ?? '-' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>: {{ $item->email }}</td>
+                    </tr>
+                    <tr>
+                        <th>No HP</th>
+                        <td>: {{ $item->no_hp }}</td>
+                    </tr>
+                    <tr>
+                        <th>Alamat</th>
+                        <td>: {{ $item->alamat }}</td>
+                    </tr>
+                    <tr>
+                        <th>Alasan Mendaftar</th>
+                        <td>: {{ $item->alasan }}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>: {{ $item->status }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal Daftar</th>
+                        <td>: {{ $item->created_at->format('d/m/Y H:i') }}</td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Tutup
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+@endforeach
+
 @endsection
+
+@push('scripts')
+<script>
+    document.getElementById('cariRelawan').addEventListener('keyup', function () {
+        const keyword = this.value.toLowerCase();
+        document.querySelectorAll('#tabelRelawan tbody tr').forEach(function (row) {
+            const namaCell = row.querySelector('.nama-relawan');
+            if (!namaCell) return;
+            const nama = namaCell.textContent.toLowerCase();
+            row.style.display = nama.includes(keyword) ? '' : 'none';
+        });
+    });
+</script>
+@endpush

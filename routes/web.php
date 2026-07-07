@@ -34,6 +34,12 @@ Route::resource('kegiatan', KegiatanController::class);
 
 // ================= RELAWAN =================
 
-Route::get('/verifikasi-relawan', function () {
-    return view('admin.relawan.index');
-})->name('relawan.index');
+use App\Http\Controllers\Admin\RelawanController;
+
+Route::get('/verifikasi-relawan', [RelawanController::class, 'index'])->name('relawan.index');
+Route::put('/relawan/{id}/terima', [RelawanController::class, 'terima'])->name('relawan.terima');
+Route::put('/relawan/{id}/tolak', [RelawanController::class, 'tolak'])->name('relawan.tolak');
+
+// Form pendaftaran relawan (publik)
+Route::get('/daftar-relawan', [RelawanController::class, 'create'])->name('relawan.create');
+Route::post('/daftar-relawan', [RelawanController::class, 'store'])->name('relawan.store');
