@@ -58,7 +58,6 @@
                         <th width="220">Aksi</th>
                     </tr>
                 </thead>
-
                 <tbody>
 
                     @forelse($kegiatan as $item)
@@ -174,11 +173,8 @@
                     </tr>
 
                     @endforelse
-
                 </tbody>
-
             </table>
-
         </div>
 
         @if(method_exists($kegiatan,'links'))
@@ -188,7 +184,6 @@
         @endif
 
     </div>
-
 </div>
 
 @endsection

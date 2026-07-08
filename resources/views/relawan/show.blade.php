@@ -11,42 +11,30 @@
 
 </head>
 
-<body class="bg-[#F7F2EB] pt-20 relative overflow-x-hidden">
+
+
+<body class="bg-stone-100">
+
+
 
 <!-- Navbar -->
 
-<nav class="fixed top-0 left-0 w-full z-50
+<nav class="bg-amber-900 text-white px-12 py-5 flex justify-between items-center shadow-md">
 
-bg-gradient-to-r
-from-amber-950
-via-amber-900
-to-yellow-800
 
-text-white
-
-px-12
-py-4
-
-flex
-justify-between
-items-center
-
-shadow-lg">
 
 
 <div class="flex items-center gap-3">
 
-<img src="{{ asset('images/buku.png') }}"
+    <img src="{{ asset('images/buku.png') }}"
+         class="w-8">
 
-class="w-8">
-
-<h1 class="font-bold text-2xl">
-
-GemaAksara
-
-</h1>
+    <h1 class="font-bold text-2xl">
+        GemaAksara
+    </h1>
 
 </div>
+
 
 
 
@@ -97,7 +85,7 @@ class="hover:text-yellow-300">
 
     </form>
 
-</div>
+
 
 </nav>
 
@@ -105,37 +93,37 @@ class="hover:text-yellow-300">
 
 
 
-<div class="max-w-6xl mx-auto pt-3 pb-10">
+<div class="max-w-6xl mx-auto py-10">
+
+
+
+<a href="/relawan"
+
+class="text-amber-800 font-semibold hover:underline">
+
+
+← Kembali ke Beranda
+
+
+</a>
 
 
 
 
 
-<div class="bg-white
-
-rounded-[30px]
-
-shadow-xl
-
-border
-
-border-amber-100
-
-p-7
-
-mt-3
-
-max-w-3xl
-
-mx-auto">
+<div class="bg-white rounded-3xl shadow-lg p-8 mt-8 max-w-4xl mx-auto">
 
 
 
 
 
-<img src="{{ asset('images/Gema aksara gambar.png') }}"
-
-class="w-full h-81 object-cover rounded-2xl">
+@if($item->gambar)
+    <img src="{{ asset('storage/'.$item->gambar) }}"
+         class="w-full h-80 object-cover">
+@else
+    <img src="{{ asset('images/Gema aksara gambar.png') }}"
+         class="w-full h-80 object-cover">
+@endif
 
 
 
@@ -147,77 +135,36 @@ class="w-full h-81 object-cover rounded-2xl">
 
 
 
-<div class="flex items-center justify-between flex-wrap gap-3">
+<span class="bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-sm font-semibold">
 
 
+📚 Literasi Anak
 
-<div class="inline-flex items-center gap-2
-bg-amber-100
-text-amber-800
-px-4 py-2
-rounded-full
-text-sm
-font-semibold">
-
-    <div class="w-5 h-5 flex items-center justify-center overflow-visible">
-        <img src="{{ asset('images/5.png') }}"
-             class="w-5 h-5 object-contain scale-[2.8]">
-    </div>
-
-    <span>Literasi Anak</span>
-
-</div>
-
-
-
-
-
-<span class="inline-flex
-
-items-center
-
-gap-2
-
-bg-green-100
-
-text-green-700
-
-px-4
-
-py-2
-
-rounded-full
-
-text-sm
-
-font-semibold">
-
-<span class="w-3 h-3 rounded-full bg-green-500"></span>
-
-Pendaftaran Dibuka
 
 </span>
 
 
 
-</div>
+
+
+<span class="ml-3 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+
+
+🟢 Pendaftaran Dibuka
+
+
+</span>
 
 
 
 
 
 
-<h1 class="text-4xl
+<h1 class="text-4xl font-bold text-amber-900 mt-5">
 
-font-bold
 
-text-amber-900
+{{ $item->nama_kegiatan }}
 
-mt-6
-
-leading-tight">
-
-Petualangan Membaca Bersama
 
 </h1>
 
@@ -226,16 +173,14 @@ Petualangan Membaca Bersama
 
 
 
-<p class="mt-5
+<p class="mt-5 text-gray-600 leading-8">
 
-text-gray-600
 
-leading-8">
 
-Petualangan Membaca Bersama merupakan kegiatan literasi interaktif yang mengajak anak-anak menjelajahi dunia cerita melalui sesi membaca nyaring, permainan edukatif, dan diskusi ringan bersama relawan GemaAksara.
+{{ $item->deskripsi }}
+
 
 </p>
-
 
 
 
@@ -247,29 +192,17 @@ Petualangan Membaca Bersama merupakan kegiatan literasi interaktif yang mengajak
 
 
 
-<div class="bg-white
+<div class="bg-stone-100 rounded-xl p-4">
 
-rounded-2xl
-
-shadow-md
-
-border
-
-border-amber-100
-
-p-5
-
-hover:shadow-lg
-
-duration-300">
 
 📅 <b>Tanggal</b>
 
 <p class="mt-2">
 
-25 Juli 2026
+{{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}
 
 </p>
+
 
 </div>
 
@@ -277,30 +210,19 @@ duration-300">
 
 
 
+<div class="bg-stone-100 rounded-xl p-4">
 
-<div class="bg-white
-
-rounded-2xl
-
-shadow-md
-
-border
-
-border-amber-100
-
-p-5
-
-hover:shadow-lg
-
-duration-300">
 
 🕘 <b>Waktu</b>
 
+
 <p class="mt-2">
 
-09.00 WIB
+{{ $item->jam_mulai }}
 
 </p>
+
+
 
 </div>
 
@@ -309,29 +231,20 @@ duration-300">
 
 
 
-<div class="bg-white
+<div class="bg-stone-100 rounded-xl p-4">
 
-rounded-2xl
-
-shadow-md
-
-border
-
-border-amber-100
-
-p-5
-
-hover:shadow-lg
-
-duration-300">
 
 📍 <b>Lokasi</b>
 
+
 <p class="mt-2">
 
-Aula Perpustakaan Daerah
+{{ $item->lokasi }}
+
 
 </p>
+
+
 
 </div>
 
@@ -340,71 +253,56 @@ Aula Perpustakaan Daerah
 
 
 
+<div class="bg-stone-100 rounded-xl p-4">
 
-<div class="bg-white
-
-rounded-2xl
-
-shadow-md
-
-border
-
-border-amber-100
-
-p-5
-
-hover:shadow-lg
-
-duration-300">
 
 👥 <b>Kuota Relawan</b>
 
+
+
 <p class="mt-2">
 
-15 Orang
+{{ $item->kuota_relawan }} Orang
+
+
 
 </p>
 
-</div>
+
 
 </div>
 
-</div>
+
+
 
 </div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
 
 
 <!-- Form -->
 
-<div class="bg-white
-
-rounded-[30px]
-
-shadow-xl
-
-border
-
-border-amber-100
-
-p-8
-
-mt-8
-
-max-w-3xl
-
-mx-auto">
+<div class="bg-white rounded-3xl shadow-lg p-8 mt-8">
 
 
 
-<h2 class="text-3xl
+<h2 class="text-3xl font-bold text-amber-900 mb-8">
 
-font-bold
-
-text-amber-900
-
-mb-8">
 
 Formulir Pendaftaran Relawan
+
 
 </h2>
 
@@ -412,43 +310,30 @@ Formulir Pendaftaran Relawan
 
 
 
-<form>
-
+<form action="/pendaftaran"method="POST">
+    @csrf
+<input type="hidden"
+       name="kegiatan_id"
+       value="{{ $item->id_kegiatan }}">
 
 
 
 
 <label class="font-semibold">
+
 
 Nama Lengkap
 
+
 </label>
 
-<input
 
-type="text"
-
+<input type="text"
+name="nama"
 placeholder="Masukkan nama lengkap"
 
-class="w-full
+class="w-full border rounded-xl p-3 mt-2 mb-5">
 
-border
-
-border-amber-200
-
-rounded-xl
-
-p-3
-
-mt-2
-
-mb-5
-
-focus:outline-none
-
-focus:ring-2
-
-focus:ring-amber-400">
 
 
 
@@ -458,31 +343,39 @@ focus:ring-amber-400">
 
 <label class="font-semibold">
 
+
 Jenis Kelamin
 
+
 </label>
+
 
 
 
 <div class="mt-3 mb-5 flex gap-8">
 
-<label class="flex items-center gap-2">
 
-<input type="radio">
 
+<label>
+
+<input type="radio" name="jenis_kelamin" value="laki-laki">
 Laki-laki
+
 
 </label>
 
 
 
-<label class="flex items-center gap-2">
+<label>
 
-<input type="radio">
+<input type="radio" name="jenis_kelamin" value="perempuan">
 
 Perempuan
 
+
 </label>
+
+
 
 </div>
 
@@ -493,37 +386,23 @@ Perempuan
 
 
 
+
 <label class="font-semibold">
+
 
 No Telepon / WA
 
+
 </label>
 
-<input
 
-type="text"
+
+<input type="text"
+name="nomor_telepon"
 
 placeholder="08xxxxxxxxxx"
 
-class="w-full
-
-border
-
-border-amber-200
-
-rounded-xl
-
-p-3
-
-mt-2
-
-mb-5
-
-focus:outline-none
-
-focus:ring-2
-
-focus:ring-amber-400">
+class="w-full border rounded-xl p-3 mt-2 mb-5">
 
 
 
@@ -534,36 +413,23 @@ focus:ring-amber-400">
 
 <label class="font-semibold">
 
+
 Alamat Rumah
+
 
 </label>
 
-<textarea
 
+
+<textarea
+name="alamat"
 rows="3"
 
 placeholder="Masukkan alamat lengkap"
 
-class="w-full
+class="w-full border rounded-xl p-3 mt-2 mb-5">
 
-border
-
-border-amber-200
-
-rounded-xl
-
-p-3
-
-mt-2
-
-mb-5
-
-focus:outline-none
-
-focus:ring-2
-
-focus:ring-amber-400"></textarea>
-
+</textarea>
 
 
 
@@ -574,78 +440,39 @@ focus:ring-amber-400"></textarea>
 
 <label class="font-semibold">
 
+
 Alasan Mengikuti
+
 
 </label>
 
-<textarea
 
+
+
+<textarea
+name="alasan"
 rows="4"
 
 placeholder="Ceritakan alasan Anda mengikuti kegiatan ini"
 
-class="w-full
+class="w-full border rounded-xl p-3 mt-2 mb-6">
 
-border
-
-border-amber-200
-
-rounded-xl
-
-p-3
-
-mt-2
-
-mb-6
-
-focus:outline-none
-
-focus:ring-2
-
-focus:ring-amber-400"></textarea>
+</textarea>
 
 
 
 
 
-
-
-
-<a href="/relawan/sukses">
 
 <button
 
-type="button"
+class="bg-amber-700 hover:bg-amber-800 text-white px-7 py-3 rounded-xl">
 
-class="bg-gradient-to-r
-
-from-[#6B240C]
-
-via-[#B45309]
-
-to-[#D97706]
-
-text-white
-
-px-8
-
-py-3
-
-rounded-xl
-
-font-semibold
-
-shadow-lg
-
-hover:scale-105
-
-duration-300">
 
 Ajukan Pendaftaran Sebagai Relawan
 
-</button>
 
-</a>
+</button>
 
 
 
@@ -653,7 +480,18 @@ Ajukan Pendaftaran Sebagai Relawan
 
 </form>
 
+
+
 </div>
+
+
+
+
+
+</div>
+
+
+
 
 </body>
 

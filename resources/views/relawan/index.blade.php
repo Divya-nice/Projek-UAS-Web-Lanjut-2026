@@ -232,13 +232,11 @@ bagi anak-anak Pontianak.
 
 <div class="grid md:grid-cols-3 gap-8 mt-12">
 
-
-
 <!-- card 1 -->
 
 <div class="bg-white
 
-rounded-3xl
+rounded-3xl"
 
 shadow-lg
 
@@ -246,7 +244,7 @@ p-7
 
 hover:-translate-y-2
 
-duration-300">
+duration-300>
 
 
 <img src="{{ asset('images/2.png') }}"
@@ -413,265 +411,89 @@ bagi anak-anak.
 
 <!-- DAFTAR KEGIATAN -->
 
+<section id="kegiatan" class="mx-10 mb-16">
 
-<section id="kegiatan"
+    <h2 class="text-3xl font-bold text-amber-900 mb-8">
+        Daftar Kegiatan
+    </h2>
 
-class="mx-10 mb-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
+        @forelse($kegiatan as $item)
 
+        <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl duration-300 overflow-hidden">
 
-<h2 class="text-3xl font-bold text-amber-900 mb-8">
+            @if($item->gambar)
+                <img src="{{ asset('storage/'.$item->gambar) }}"
+                     class="w-full h-56 object-cover">
+            @else
+                <img src="{{ asset('images/Gema aksara gambar.png') }}"
+                     class="w-full h-56 object-cover">
+            @endif
 
+            <div class="p-6">
 
-Daftar Kegiatan
+                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                    Pendaftaran Dibuka
+                </span>
 
+                <p class="mt-4 text-gray-500">
+                    📅 {{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}
+                </p>
 
-</h2>
+                <p class="text-gray-500">
+                    🕘 {{ $item->jam_mulai }}
+                </p>
 
+                <h3 class="text-2xl font-bold mt-3 text-amber-900">
+                    {{ $item->nama_kegiatan }}
+                </h3>
 
+                <p class="text-gray-600 mt-3">
+                    📍 {{ $item->lokasi }}
+                </p>
 
+                <a href="{{ route('relawan.show', $item->id_kegiatan) }}"
+                    class="mt-5 block w-full
+                    bg-gradient-to-r
+                    from-[#6B240C]
+                    via-[#B45309]
+                    to-[#D97706]
+                    text-white
+                    py-3
+                    rounded-xl
+                    font-semibold
+                    text-center
+                    hover:scale-105
+                    duration-300">
 
+                    Lihat Detail & Daftar
 
+                </a>
 
-<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
 
+        </div>
 
+        @empty
 
+        <div class="col-span-3 text-center py-16">
 
+            <h3 class="text-2xl font-bold text-amber-900">
+                Belum Ada Kegiatan
+            </h3>
 
+            <p class="text-gray-500 mt-3">
+                Saat ini belum ada kegiatan yang tersedia.
+            </p>
 
-<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl duration-300 overflow-hidden">
+        </div>
 
-
-
-
-
-
-<img src="{{ asset('images/Gema aksara gambar.png') }}"
-
-class="w-full h-56 object-cover">
-
-
-
-
-
-
-<div class="p-6">
-
-
-
-
-
-<span class="bg-green-100
-
-text-green-700
-
-px-3
-
-py-1
-
-rounded-full
-
-text-sm">
-
-
-Pendaftaran Dibuka
-
-
-</span>
-
-
-
-
-
-<p class="mt-4 text-gray-500">
-
-
-📅 25 Juli 2026
-
-
-</p>
-
-
-
-
-
-<p class="text-gray-500">
-
-
-🕘 09.00 WIB
-
-
-</p>
-
-
-
-
-
-
-
-<h3 class="text-2xl font-bold mt-3 text-amber-900">
-
-
-Petualangan Membaca Bersama
-
-
-</h3>
-
-
-
-
-
-
-<p class="text-gray-600 mt-3">
-
-
-📍 Aula Perpustakaan Daerah
-
-
-</p>
-
-
-
-
-
-
-
-<a href="/relawan/detail"
-
-class="mt-5 block w-full
-
-bg-gradient-to-r
-
-from-[#6B240C]
-
-via-[#B45309]
-
-to-[#D97706]
-
-text-white
-
-py-3
-
-rounded-xl
-
-font-semibold
-
-text-center
-
-hover:scale-105
-
-duration-300">
-
-
-Lihat Detail & Daftar
-
-
-</a>
-
-
-
-</div>
-
-
-
-</div>
-<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl duration-300 overflow-hidden">
-
-<img src="{{ asset('images/Dongeng cerita.png') }}"
-class="w-full h-56 object-cover">
-
-<div class="p-6">
-
-<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-Pendaftaran Dibuka
-</span>
-
-<p class="mt-4 text-gray-500">
-📅 02 Agustus 2026
-</p>
-
-<p class="text-gray-500">
-🕘 08.30 WIB
-</p>
-
-<h3 class="text-2xl font-bold mt-3 text-amber-900">
-Dongeng Ceria Bersama Anak-anak
-</h3>
-
-<p class="text-gray-600 mt-3">
-📍 Taman Alun Kapuas
-</p>
-
-<a href="/relawan/detail"
-class="mt-5 block w-full
-bg-gradient-to-r
-from-[#6B240C]
-via-[#B45309]
-to-[#D97706]
-text-white
-py-3
-rounded-xl
-font-semibold
-text-center
-hover:scale-105
-duration-300">
-
-Lihat Detail & Daftar
-
-</a>
-
-</div>
-
-</div>
-
-<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl duration-300 overflow-hidden flex flex-col">
-
-    <img src="{{ asset('images/Kelas kreatif.png') }}"
-    class="w-full h-56 object-cover">
-
-    <div class="p-6 flex flex-col flex-1">
-
-        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm w-fit">
-            Pendaftaran Dibuka
-        </span>
-
-        <p class="mt-4 text-gray-500">
-            📅 10 Agustus 2026
-        </p>
-
-        <p class="text-gray-500">
-            🕘 13.00 WIB
-        </p>
-
-        <h3 class="text-2xl font-bold mt-3 text-amber-900">
-            Kelas Kreatif Literasi
-        </h3>
-
-        <p class="text-gray-600 mt-3">
-            📍 SD Negeri 14 Pontianak
-        </p>
-
-        <a href="/relawan/detail"
-        class="mt-auto block w-full bg-gradient-to-r from-[#6B240C] via-[#B45309] to-[#D97706] text-white py-3 rounded-xl font-semibold text-center hover:scale-105 duration-300">
-            Lihat Detail & Daftar
-        </a>
+        @endforelse
 
     </div>
 
-</div>
-
-</div>
-
-
-
-</div>
-
-
-
 </section>
-
-
 
 </body>
 </html>

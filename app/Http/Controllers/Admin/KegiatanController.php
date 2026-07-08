@@ -22,6 +22,15 @@ class KegiatanController extends Controller
     /**
      * Menampilkan form tambah kegiatan
      */
+
+    public function relawan()
+{
+    $kegiatan = Kegiatan::where('status', 'Aktif')
+        ->orderBy('tanggal', 'asc')
+        ->get();
+
+    return view('relawan.index', compact('kegiatan'));
+}
     public function create()
     {
         return view('admin.kegiatan.create');
@@ -74,6 +83,13 @@ class KegiatanController extends Controller
         return redirect()
             ->route('kegiatan.index')
             ->with('success', 'Kegiatan berhasil ditambahkan.');
+    }
+
+        public function show($id)
+    {
+    $item = Kegiatan::findOrFail($id);
+
+    return view('relawan.show', compact('item'));
     }
 
     /**
