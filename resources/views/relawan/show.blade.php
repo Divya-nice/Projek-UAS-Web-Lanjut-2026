@@ -23,33 +23,67 @@
 
 
 
+
 <div class="flex items-center gap-3">
 
+    <img src="{{ asset('images/buku.png') }}"
+         class="w-8">
 
-<img src="{{ asset('images/Gema aksara gambar.png') }}"
-
-class="w-10 h-10 rounded-full">
-
-
-
-<h1 class="font-bold text-2xl">
-
-GemaAksara
-
-</h1>
-
+    <h1 class="font-bold text-2xl">
+        GemaAksara
+    </h1>
 
 </div>
 
 
 
 
-<div>
 
-Halo, Relawan 👋
 
+<div class="flex gap-14 font-medium">
+
+<a href="/relawan"
+
+class="hover:text-yellow-300">
+
+Beranda Kegiatan
+
+</a>
+
+<a href="/relawan/jadwal"
+class="hover:text-yellow-300">
+    Jadwal Saya
+</a>
 
 </div>
+
+
+
+
+
+<div class="flex items-center gap-6">
+
+    <div class="flex items-center">
+
+        <span class="font-medium">
+            Halo, Relawan
+        </span>
+
+    </div>
+
+
+    <form action="/logout" method="POST">
+        @csrf
+
+        <button
+            type="submit"
+            class="bg-white text-amber-900 px-4 py-2 rounded-xl font-semibold hover:bg-amber-100 transition">
+
+            Logout
+
+        </button>
+
+    </form>
 
 
 
@@ -83,9 +117,13 @@ class="text-amber-800 font-semibold hover:underline">
 
 
 
-<img src="{{ asset('images/' . $item->gambar) }}"
-
-class="w-full h-80 object-cover">
+@if($item->gambar)
+    <img src="{{ asset('storage/'.$item->gambar) }}"
+         class="w-full h-80 object-cover">
+@else
+    <img src="{{ asset('images/Gema aksara gambar.png') }}"
+         class="w-full h-80 object-cover">
+@endif
 
 
 
@@ -125,7 +163,7 @@ class="w-full h-80 object-cover">
 <h1 class="text-4xl font-bold text-amber-900 mt-5">
 
 
-{{ $item->judul }}
+{{ $item->nama_kegiatan }}
 
 
 </h1>
@@ -161,7 +199,7 @@ class="w-full h-80 object-cover">
 
 <p class="mt-2">
 
-25 Juni 2026
+{{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}
 
 </p>
 
@@ -180,7 +218,7 @@ class="w-full h-80 object-cover">
 
 <p class="mt-2">
 
-09.00 WIB
+{{ $item->jam_mulai }}
 
 </p>
 
@@ -201,7 +239,7 @@ class="w-full h-80 object-cover">
 
 <p class="mt-2">
 
-Aula Perpustakaan Daerah
+{{ $item->lokasi }}
 
 
 </p>
@@ -224,7 +262,7 @@ Aula Perpustakaan Daerah
 
 <p class="mt-2">
 
-15 Orang
+{{ $item->kuota_relawan }} Orang
 
 
 
@@ -274,7 +312,9 @@ Formulir Pendaftaran Relawan
 
 <form action="/pendaftaran"method="POST">
     @csrf
-<input type="hidden" name="kegiatan_id" value="1">
+<input type="hidden"
+       name="kegiatan_id"
+       value="{{ $item->id_kegiatan }}">
 
 
 
