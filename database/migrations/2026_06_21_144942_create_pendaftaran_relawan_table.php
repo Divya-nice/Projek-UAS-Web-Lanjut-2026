@@ -17,10 +17,12 @@ return new class extends Migration
         $table->unsignedBigInteger('kegiatan_id');
             $table->string('nama');
             $table->string('email');
+            $table->string('jenis_kelamin');
             $table->string('nomor_telepon');
+            $table->text('alamat');
             $table->text('alasan');
 
-        $table->string('status')->default('pending');
+        $table->string('status')->default('Menunggu');
             $table->timestamps();
         });
     }

@@ -147,20 +147,6 @@
                 </button>
             </form>
 
-            <div class="flex items-center my-4">
-                <div class="flex-1 border-t" style="border-color: #EFE8E0;"></div>
-                <span class="px-3 text-[11px] font-light" style="color: #A49382;">atau masuk dengan</span>
-                <div class="flex-1 border-t" style="border-color: #EFE8E0;"></div>
-            </div>
-
-            <button 
-                type="button"
-                class="w-full h-12 border rounded-[14px] flex items-center justify-center gap-2.5 text-[14px] font-medium bg-white hover:bg-stone-50 transition-all"
-                style="border-color: #EAE1D8; color: #4A3524;">
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-4 h-4">
-                Masuk dengan Google
-            </button>
-
             <p class="text-center text-[13px] mt-5" style="color: #8C7865;">
                 Belum punya akun? 
                 <a href="{{ route('register') }}" class="font-bold hover:underline ml-1" style="color: #6D4C30;">Daftar</a>

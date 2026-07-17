@@ -94,25 +94,37 @@
                         </td>
 
                         <td>
-                            {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
+                            {{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}
                         </td>
 
-                        <td>{{ $item->jam_mulai }}</td>
+                        <td>{{ \Carbon\Carbon::parse($item->jam_mulai)->format('H:i') }}</td>
 
                         <td>{{ $item->lokasi }}</td>
 
                         <td>{{ $item->kuota_relawan }}</td>
 
                         <td>
-                            @if($item->status == 'Aktif')
-                                <span class="badge bg-success">
-                                    Aktif
-                                </span>
+
+                            @if($item->status == 'Pendaftaran Dibuka')
+
+                            <span class="badge bg-success">
+                                {{ $item->status }}
+                            </span>
+
+                            @elseif($item->status == 'Pendaftaran Ditutup')
+
+                            <span class="badge bg-danger">
+                                {{ $item->status }}
+                            </span>
+
                             @else
-                                <span class="badge bg-secondary">
-                                    Selesai
-                                </span>
+
+                            <span class="badge bg-secondary">
+                                {{ $item->status }}
+                            </span>
+
                             @endif
+
                         </td>
 
                         <td>

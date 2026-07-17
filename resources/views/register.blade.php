@@ -477,18 +477,6 @@
       </button>
     </form>
 
-    <div class="divider">atau daftar dengan</div>
-
-    <button class="btn-social" type="button">
-      <svg width="20" height="20" viewBox="0 0 48 48">
-        <path fill="#EA4335" d="M24 9.5c3.2 0 6 1.1 8.2 2.9l6.1-6.1C34.6 3.1 29.6 1 24 1 14.8 1 6.9 6.5 3.2 14.3l7.1 5.5C12 14.2 17.5 9.5 24 9.5z"/>
-        <path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.9-2.2 5.4-4.7 7l7.1 5.5c4.2-3.9 6.3-9.6 6.3-16.5z"/>
-        <path fill="#FBBC05" d="M10.3 28.2A14.8 14.8 0 0 1 9.5 24c0-1.5.2-2.9.6-4.2L3 14.3A23 23 0 0 0 1 24c0 3.6.9 7.1 2.5 10.1l7.8-5.9z"/>
-        <path fill="#34A853" d="M24 47c5.5 0 10.2-1.8 13.6-4.9l-7.1-5.5c-1.9 1.3-4.3 2-6.5 2-6.5 0-12-4.7-13.7-11l-7.8 5.9C6.9 41.5 14.8 47 24 47z"/>
-      </svg>
-      Daftar dengan Google
-    </button>
-
     <div class="form-footer">
       Sudah punya akun? <a href="{{ route('login') }}">Masuk</a>
     </div>

@@ -22,15 +22,13 @@ class KegiatanController extends Controller
     /**
      * Menampilkan form tambah kegiatan
      */
-
     public function relawan()
-{
-    $kegiatan = Kegiatan::where('status', 'Aktif')
-        ->orderBy('tanggal', 'asc')
-        ->get();
+    {
+        $kegiatan = Kegiatan::orderBy('tanggal', 'asc')->get();
 
-    return view('relawan.index', compact('kegiatan'));
-}
+        return view('relawan.index', compact('kegiatan'));
+    }
+    
     public function create()
     {
         return view('admin.kegiatan.create');
@@ -48,6 +46,7 @@ class KegiatanController extends Controller
             'jam_mulai'     => 'required',
             'lokasi'        => 'required|max:255',
             'kuota_relawan' => 'required|integer|min:1',
+            'status' => 'required|in:Pendaftaran Dibuka,Pendaftaran Ditutup',
             'gambar'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ], [
             'nama_kegiatan.required' => 'Nama kegiatan wajib diisi.',
@@ -77,7 +76,7 @@ class KegiatanController extends Controller
             'lokasi'        => $request->lokasi,
             'kuota_relawan' => $request->kuota_relawan,
             'gambar'        => $gambarPath,
-            'status'        => 'Aktif',
+            'status'        => $request->status,
         ]);
 
         return redirect()
@@ -114,6 +113,7 @@ class KegiatanController extends Controller
             'jam_mulai'     => 'required',
             'lokasi'        => 'required|max:255',
             'kuota_relawan' => 'required|integer|min:1',
+            'status'        => 'required|in:Pendaftaran Dibuka,Pendaftaran Ditutup',
             'gambar'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ], [
             'nama_kegiatan.required' => 'Nama kegiatan wajib diisi.',
@@ -138,6 +138,7 @@ class KegiatanController extends Controller
             'jam_mulai'     => $request->jam_mulai,
             'lokasi'        => $request->lokasi,
             'kuota_relawan' => $request->kuota_relawan,
+            'status'        => $request->status,
         ];
 
         if ($request->hasFile('gambar')) {

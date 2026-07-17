@@ -338,8 +338,8 @@ MENU ADMIN
 
 </div>
 
-<a href="{{ route('beranda') }}"
-class="{{ request()->routeIs('beranda') ? 'active' : '' }}">
+<a href="{{ route('admin.beranda') }}"
+class="{{ request()->routeIs('admin.beranda') ? 'active' : '' }}">
 
 <i class="bi bi-house-door-fill"></i>
 

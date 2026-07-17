@@ -431,28 +431,48 @@ bagi anak-anak.
                      class="w-full h-56 object-cover">
             @endif
 
-            <div class="p-6">
+        <div class="p-6">
 
-                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-                    Pendaftaran Dibuka
+            {{-- Status --}}
+            @if($item->status == 'Pendaftaran Dibuka')
+                <span class="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                    🟢 {{ $item->status }}
                 </span>
+            @else
+                <span class="inline-block bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">
+                    🔴 {{ $item->status }}
+                </span>
+            @endif
 
-                <p class="mt-4 text-gray-500">
-                    📅 {{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}
-                </p>
+            {{-- Nama Kegiatan --}}
+            <h3 class="text-2xl font-bold text-amber-900 mt-4">
+                {{ $item->nama_kegiatan }}
+            </h3>
 
-                <p class="text-gray-500">
-                    🕘 {{ $item->jam_mulai }}
-                </p>
+            {{-- Tanggal --}}
+            <p class="text-gray-600 mt-4">
+                📅
+                {{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}
+            </p>
 
-                <h3 class="text-2xl font-bold mt-3 text-amber-900">
-                    {{ $item->nama_kegiatan }}
-                </h3>
+            {{-- Jam --}}
+            <p class="text-gray-600 mt-1">
+                🕘
+                {{ \Carbon\Carbon::parse($item->jam_mulai)->format('H:i') }}
+            </p>
 
-                <p class="text-gray-600 mt-3">
-                    📍 {{ $item->lokasi }}
-                </p>
+            {{-- Kuota --}}
+            <p class="text-gray-600 mt-1">
+                👥 Kuota Relawan :
+                <span class="font-semibold">
+                    {{ $item->kuota_relawan }} orang
+                </span>
+            </p>
 
+            {{-- Lokasi --}}
+            <p class="text-gray-600 mt-1">
+                📍 {{ $item->lokasi }}
+            </p>
                 <a href="{{ route('relawan.show', $item->id_kegiatan) }}"
                     class="mt-5 block w-full
                     bg-gradient-to-r
