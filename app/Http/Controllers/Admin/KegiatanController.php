@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kegiatan;
+use App\Models\PendaftaranRelawan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class KegiatanController extends Controller
@@ -46,7 +48,7 @@ class KegiatanController extends Controller
             'jam_mulai'     => 'required',
             'lokasi'        => 'required|max:255',
             'kuota_relawan' => 'required|integer|min:1',
-            'status' => 'required|in:Pendaftaran Dibuka,Pendaftaran Ditutup',
+            'status'        => 'required|in:Pendaftaran Dibuka,Pendaftaran Ditutup',
             'gambar'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ], [
             'nama_kegiatan.required' => 'Nama kegiatan wajib diisi.',
@@ -84,17 +86,43 @@ class KegiatanController extends Controller
             ->with('success', 'Kegiatan berhasil ditambahkan.');
     }
 
-        public function show($id)
+    public function show(int $id)
     {
-    $item = Kegiatan::findOrFail($id);
+        $item = Kegiatan::findOrFail($id);
 
-    return view('relawan.show', compact('item'));
+        $jumlahDiterima = PendaftaranRelawan::where('kegiatan_id', $id)
+            ->where('status', 'Diterima')
+            ->count();
+
+        $kuotaPenuh = $jumlahDiterima >= $item->kuota_relawan;
+
+        $sisaKuota = max(0, $item->kuota_relawan - $jumlahDiterima);
+
+        $sudahDaftar = false;
+        $user = null;
+
+        if (Auth::check()) {
+
+            $sudahDaftar = PendaftaranRelawan::where('user_id', Auth::id())
+                ->where('kegiatan_id', $id)
+                ->exists();
+
+            $user = Auth::user();
+        }
+
+        return view('relawan.show', compact(
+            'item',
+            'sudahDaftar',
+            'kuotaPenuh',
+            'sisaKuota',
+            'user'
+        ));
     }
 
     /**
      * Menampilkan form edit
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $kegiatan = Kegiatan::findOrFail($id);
 
@@ -104,7 +132,7 @@ class KegiatanController extends Controller
     /**
      * Menyimpan hasil edit
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'nama_kegiatan' => 'required|max:255',
@@ -160,7 +188,7 @@ class KegiatanController extends Controller
     /**
      * Menghapus kegiatan
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $kegiatan = Kegiatan::findOrFail($id);
 
@@ -173,5 +201,15 @@ class KegiatanController extends Controller
         return redirect()
             ->route('kegiatan.index')
             ->with('success', 'Kegiatan berhasil dihapus.');
+    }
+
+    public function jadwal()
+    {
+        $pendaftaran = PendaftaranRelawan::with('kegiatan')
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->get();
+
+        return view('relawan.jadwal', compact('pendaftaran'));
     }
 }

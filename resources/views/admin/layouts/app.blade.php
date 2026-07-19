@@ -313,7 +313,7 @@ footer{
     <div class="admin-info">
 
         <span>
-            Halo, <strong>Admin</strong>
+            Halo, <strong>{{ auth()->user()->name }}</strong>
         </span>
 
         <form action="{{ route('logout') }}" method="POST" style="display:inline;">

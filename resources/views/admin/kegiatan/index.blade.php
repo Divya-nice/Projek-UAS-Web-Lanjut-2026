@@ -97,7 +97,7 @@
                             {{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}
                         </td>
 
-                        <td>{{ \Carbon\Carbon::parse($item->jam_mulai)->format('H:i') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($item->jam_mulai)->format('H:i') }} WIB</td>
 
                         <td>{{ $item->lokasi }}</td>
 

@@ -113,7 +113,7 @@
                         type="time"
                         name="jam_mulai"
                         class="form-control @error('jam_mulai') is-invalid @enderror"
-                        value="{{ old('jam_mulai', \Carbon\Carbon::parse($kegiatan->jam_mulai)->format('H:i')) }}">
+                        value="{{ old('jam_mulai', \Carbon\Carbon::parse($kegiatan->jam_mulai)->format('H:i')) }} WIB">
 
                     @error('jam_mulai')
                         <div class="invalid-feedback">

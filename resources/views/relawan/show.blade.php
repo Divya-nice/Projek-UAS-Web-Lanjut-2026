@@ -30,7 +30,7 @@
     <div class="flex items-center gap-6">
 
         <span class="font-medium">
-            Halo, Relawan
+            Halo, {{ Auth::user()->name }}
         </span>
 
         <form action="{{ route('logout') }}" method="POST">
@@ -133,11 +133,33 @@
     </div>
 
     <!-- Form Pendaftaran -->
-    <div class="bg-white rounded-3xl shadow-lg p-8 mt-8">
+    <div class="bg-white rounded-3xl shadow-lg p-8 mt-8 max-w-4xl mx-auto">
 
         <h2 class="text-3xl font-bold text-amber-900 mb-8">
             Formulir Pendaftaran Relawan
         </h2>
+
+        @if ($errors->any())
+
+        <div class="mb-6 bg-red-100 border border-red-300 text-red-700 rounded-xl p-4">
+
+            <p class="font-semibold mb-2">
+                Terjadi kesalahan:
+            </p>
+
+            <ul class="list-disc ml-5">
+
+                @foreach ($errors->all() as $error)
+
+                    <li>{{ $error }}</li>
+
+                @endforeach
+
+            </ul>
+
+        </div>
+
+        @endif
 
         <form action="{{ url('/pendaftaran') }}" method="POST">
 
@@ -155,8 +177,10 @@
             <input
                 type="text"
                 name="nama"
-                class="w-full border rounded-xl p-3 mt-2 mb-5"
-                placeholder="Masukkan nama lengkap">
+                value="{{ old('nama', $user->name) }}"
+                class="w-full border rounded-xl p-3 mt-2 mb-5 bg-gray-100"
+                readonly
+                required>
 
             <label class="font-semibold">
                 Email
@@ -165,8 +189,10 @@
             <input
                 type="email"
                 name="email"
-                class="w-full border rounded-xl p-3 mt-2 mb-5"
-                placeholder="Masukkan email">
+                value="{{ old('email', $user->email) }}"
+                class="w-full border rounded-xl p-3 mt-2 mb-5 bg-gray-100"
+                readonly
+                required>
 
             <label class="font-semibold">
                 Jenis Kelamin
@@ -201,6 +227,7 @@
             <input
                 type="text"
                 name="no_hp"
+                value="{{ old('no_hp') }}"
                 class="w-full border rounded-xl p-3 mt-2 mb-5"
                 placeholder="08xxxxxxxxxx">
 
@@ -212,7 +239,7 @@
                 name="alamat"
                 rows="3"
                 class="w-full border rounded-xl p-3 mt-2 mb-5"
-                placeholder="Masukkan alamat lengkap"></textarea>
+                placeholder="Masukkan alamat lengkap">{{ old('alamat') }}</textarea>
 
             <label class="font-semibold">
                 Alasan Mengikuti
@@ -222,28 +249,55 @@
                 name="alasan"
                 rows="4"
                 class="w-full border rounded-xl p-3 mt-2 mb-6"
-                placeholder="Ceritakan alasan Anda mengikuti kegiatan ini"></textarea>
+                placeholder="Ceritakan alasan Anda mengikuti kegiatan ini">{{ old('alasan') }}</textarea>
 
-            @if($item->status == 'Pendaftaran Dibuka')
+            @if(session('error'))
 
-                <button
-                    type="submit"
-                    class="bg-amber-700 hover:bg-amber-800 text-white px-7 py-3 rounded-xl">
+            <div class="mb-5 bg-red-100 border border-red-300 text-red-700 px-4 py-3 rounded-xl">
+                {{ session('error') }}
+            </div>
 
-                    Ajukan Pendaftaran Sebagai Relawan
+            @endif
 
-                </button>
+            @if($item->status != 'Pendaftaran Dibuka')
+
+            <button
+                type="button"
+                disabled
+                class="bg-gray-400 text-white px-7 py-3 rounded-xl cursor-not-allowed font-semibold transition">
+
+                Pendaftaran Ditutup
+
+            </button>
+
+            @elseif($kuotaPenuh)
+
+            <button
+                type="button"
+                disabled
+                class="bg-red-600 text-white px-7 py-3 rounded-xl cursor-not-allowed font-semibold transition">
+
+                Kuota Relawan Telah Penuh
+
+            </button>
+
+            @elseif($sudahDaftar)
+
+            <div class="bg-green-100 border border-green-300 text-green-700 px-4 py-3 rounded-xl font-semibold transition">
+
+                ✅ Kamu sudah mendaftar kegiatan ini sebelumnya.
+
+            </div>
 
             @else
 
-                <button
-                    type="button"
-                    disabled
-                    class="bg-gray-400 text-white px-7 py-3 rounded-xl cursor-not-allowed">
+            <button
+                type="submit"
+                class="bg-amber-700 hover:bg-amber-800 text-white px-7 py-3 rounded-xl font-semibold transition">
 
-                    Pendaftaran Ditutup
+                Ajukan Pendaftaran Sebagai Relawan
 
-                </button>
+            </button>
 
             @endif
 

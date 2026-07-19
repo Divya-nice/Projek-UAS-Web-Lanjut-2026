@@ -63,7 +63,7 @@ Route::middleware('role:relawan')->group(function () {
     Route::view('/relawan/sukses', 'relawan.sukses')
         ->name('relawan.sukses');
 
-    Route::view('/relawan/jadwal', 'relawan.jadwal')
+    Route::get('/relawan/jadwal', [KegiatanController::class, 'jadwal'])
         ->name('relawan.jadwal');
 
 });

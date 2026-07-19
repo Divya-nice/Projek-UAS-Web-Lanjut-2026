@@ -3,21 +3,36 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Relawan;
 use App\Models\Kegiatan;
+use App\Models\PendaftaranRelawan;
 
 class BerandaController extends Controller
 {
     public function index()
     {
-        $totalKegiatan  = Kegiatan::count();
-        $kegiatanAktif  = Kegiatan::where('status', 'Aktif')->count();
+        // Statistik kegiatan
+        $totalKegiatan = Kegiatan::count();
 
-        $totalRelawan   = Relawan::count();
-        $pendingRelawan = Relawan::where('status', 'Pending')->count();
+        $kegiatanAktif = Kegiatan::where(
+            'status',
+            'Pendaftaran Dibuka'
+        )->count();
 
-        $kegiatanTerbaru  = Kegiatan::latest()->take(5)->get();
-        $aktivitasRelawan = Relawan::latest()->take(3)->get();
+        // Statistik relawan
+        $totalRelawan = PendaftaranRelawan::count();
+
+        $pendingRelawan = PendaftaranRelawan::where(
+            'status',
+            'Menunggu Verifikasi'
+        )->count();
+
+        // Data terbaru
+        $kegiatanTerbaru = Kegiatan::latest()->take(5)->get();
+
+        $aktivitasRelawan = PendaftaranRelawan::with('kegiatan')
+            ->latest()
+            ->take(5)
+            ->get();
 
         return view('admin.dashboard', compact(
             'totalKegiatan',

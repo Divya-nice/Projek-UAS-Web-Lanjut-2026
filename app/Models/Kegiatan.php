@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\PendaftaranRelawan;
 use Illuminate\Database\Eloquent\Model;
 
 class Kegiatan extends Model
@@ -24,4 +25,9 @@ class Kegiatan extends Model
     protected $casts = [
         'tanggal' => 'date',
     ];
+
+    public function pendaftaranRelawan()
+    {
+        return $this->hasMany(PendaftaranRelawan::class, 'kegiatan_id', 'id_kegiatan');
+    }
 }
