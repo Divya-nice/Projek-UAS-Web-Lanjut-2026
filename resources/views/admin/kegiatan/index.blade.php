@@ -111,13 +111,17 @@
                         </td>
 
                         <td>
-                            <strong>
-                                {{ $item->nama_kegiatan }}
-                            </strong>
-                            <br>
-                            <small class="text-muted">
-                                {{ \Illuminate\Support\Str::limit($item->deskripsi, 45) }}
-                            </small>
+                            <div class="d-flex align-items-center gap-2">
+                                <strong class="mb-0">
+                                    {{ $item->nama_kegiatan }}
+                                </strong>
+
+                                <i class="bi bi-info-circle-fill text-secondary"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="{{ $item->deskripsi }}"
+                                    style="cursor:pointer; font-size:16px;"></i>
+                            </div>
                         </td>
 
                         <td>

@@ -74,10 +74,6 @@
 
         <div class="mt-6">
 
-            <span class="bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-sm font-semibold">
-                📚 Kegiatan Literasi
-            </span>
-
             @if($item->status == 'Pendaftaran Dibuka')
 
                 <span class="ml-3 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">

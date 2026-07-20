@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daftar Akun – GemaAksara</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -192,7 +193,7 @@
 
     .field input {
       width: 100%;
-      height: 52 px;
+      height: 52px;
       padding: 18px 14px 4px;
       font-size: .88rem;
       font-family: 'Lato', sans-serif;
@@ -451,7 +452,9 @@
       <div class="field">
         <input type="password" id="password" name="password" placeholder=" " autocomplete="new-password" />
         <label for="password">Password</label>
-        <button type="button" class="toggle-pw" onclick="togglePw('password', this)" aria-label="Tampilkan password">👁</button>
+        <button type="button" class="toggle-pw" onclick="togglePassword('password')" aria-label="Tampilkan password">
+        <i class="bi bi-eye-fill" id="icon-password"></i>
+        </button>
         <div class="field-error" id="pwErr">
           {{ $errors->first('password') ?: 'Password minimal 8 karakter.' }}
         </div>
@@ -470,7 +473,9 @@
       <div class="field">
         <input type="password" id="konfirmasi" name="password_confirmation" placeholder=" " autocomplete="new-password" />
         <label for="konfirmasi">Konfirmasi Password</label>
-        <button type="button" class="toggle-pw" onclick="togglePw('konfirmasi', this)" aria-label="Tampilkan konfirmasi">👁</button>
+        <button type="button" class="toggle-pw" onclick="togglePassword('konfirmasi')" aria-label="Tampilkan konfirmasi">
+        <i class="bi bi-eye-fill" id="icon-konfirmasi"></i>
+        </button>
         <div class="field-error" id="konfErr">Password tidak cocok.</div>
       </div>
 
@@ -544,12 +549,25 @@
     sLabel.style.color = v.length ? colors[score - 1] : 'var(--muted)';
   });
 
-  function togglePw(id, btn) {
-    const inp = document.getElementById(id);
-    const isText = inp.type === 'text';
-    inp.type = isText ? 'password' : 'text';
-    btn.textContent = isText ? '👁' : '🙈';
-  }
+  function togglePassword(id)
+{
+    let input = document.getElementById(id);
+    let icon = document.getElementById('icon-' + id);
+
+    if(input.type === "password")
+    {
+        input.type = "text";
+        icon.classList.remove('bi-eye-fill');
+        icon.classList.add('bi-eye-slash-fill');
+    }
+    else
+    {
+        input.type = "password";
+        icon.classList.remove('bi-eye-slash-fill');
+        icon.classList.add('bi-eye-fill');
+    }
+}
+
 
   document.getElementById('submitBtn').addEventListener('click', function(e) {
     const btn = this;
