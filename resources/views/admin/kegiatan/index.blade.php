@@ -68,7 +68,7 @@
 
         <div class="table-responsive">
 
-            <table class="table table-hover align-middle w-100">
+            <table class="table table-hover w-100">
 
                 <thead>
                     <tr>
@@ -110,18 +110,20 @@
                             @endif
                         </td>
 
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <strong class="mb-0">
-                                    {{ $item->nama_kegiatan }}
-                                </strong>
+                        <td style="min-width:270px; text-align:left;">
 
-                                <i class="bi bi-info-circle-fill text-secondary"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="{{ $item->deskripsi }}"
-                                    style="cursor:pointer; font-size:16px;"></i>
+                            <div>
+
+                                <div class="fw-semibold mb-1">
+                                    {{ $item->nama_kegiatan }}
+                                </div>
+
+                                <small class="text-muted">
+                                    {{ \Illuminate\Support\Str::limit($item->deskripsi,60) }}
+                                </small>
+
                             </div>
+
                         </td>
 
                         <td>

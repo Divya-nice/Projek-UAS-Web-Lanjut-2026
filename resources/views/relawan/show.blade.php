@@ -120,7 +120,7 @@
                 </div>
 
                 <div class="bg-stone-100 rounded-xl p-4">
-                    👥 <b>Kuota Relawan</b>
+                    👥 <b>Kuota</b>
                     <p class="mt-2">
                         {{ $item->kuota_relawan }} Orang
                     </p>
@@ -295,7 +295,7 @@
                 type="submit"
                 class="bg-amber-700 hover:bg-amber-800 text-white px-7 py-3 rounded-xl font-semibold transition">
 
-                Ajukan Pendaftaran Sebagai Relawan
+                Ajukan Pendaftaran
 
             </button>
 

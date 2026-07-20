@@ -163,7 +163,7 @@ value="{{ old('lokasi') }}">
 
 <label class="form-label fw-semibold">
 
-Kuota Relawan
+Kuota
 
 </label>
 

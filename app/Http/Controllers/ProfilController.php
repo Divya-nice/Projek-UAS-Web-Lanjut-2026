@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class ProfilController extends Controller
@@ -17,7 +16,7 @@ class ProfilController extends Controller
             return view('admin.profil.index', compact('user'));
         }
 
-        return view('relawan.profil.index', compact('user'));
+        return view('relawan.profil', compact('user'));
     }
 
     public function update(Request $request)

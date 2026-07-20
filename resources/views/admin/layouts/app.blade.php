@@ -217,14 +217,37 @@ footer{
 
 /* ================= TABEL ================= */
 
+.nama-kegiatan{
+    text-align:left !important;
+}
+
+.table td small{
+    color:#777;
+}
+
+.table td small{
+    font-size:12px;
+    line-height:1.3;
+    display:block;
+    margin-top:2px;
+}
+
+.table td .fw-semibold{
+    font-size:15px;
+    color:#333;
+}
+
 .table{
     margin-bottom:0;
 }
 
-.table th,
-.table td{
+.table th{
     vertical-align:middle;
     text-align:center;
+}
+
+.table td{
+    vertical-align:middle;
     padding:10px;
 }
 
@@ -237,6 +260,38 @@ footer{
     color:#444;
 }
 
+.table td small{
+    display:block;
+    margin-top:3px;
+    line-height:1.4;
+    font-size:12px;
+    color:#6c757d;
+}
+
+.table td .fw-semibold{
+    font-size:15px;
+    font-weight:600;
+    color:#333;
+}
+
+.table td{
+    font-size:13px;
+}
+
+.table td .fw-semibold{
+    font-size:15px;
+    font-weight:600;
+    color:#333;
+}
+
+.table td small{
+    font-size:12px;
+    line-height:1.4;
+    display:block;
+    margin-top:3px;
+    color:#6c757d;
+}
+
 .table .btn{
     border-radius:8px;
     font-size:13px;
@@ -245,8 +300,9 @@ footer{
 }
 
 .badge{
-    font-size:13px;
-    padding:8px 12px;
+    font-size:11px;
+    padding:6px 10px;
+    font-weight:500;
 }
 
 .form-control{
@@ -390,18 +446,6 @@ footer{
 
 
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-
-    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-        new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-});
-</script>
 
 @stack('scripts')
 

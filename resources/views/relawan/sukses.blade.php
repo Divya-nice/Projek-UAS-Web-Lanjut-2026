@@ -141,8 +141,8 @@
 
             <p class="mt-5 text-gray-700">
 
-                Terima kasih telah mendaftar sebagai relawan di
-
+                Terima kasih telah mendaftar di
+                <br>
                 <b>GemaAksara</b>
 
             </p>

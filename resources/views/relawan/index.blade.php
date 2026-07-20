@@ -257,7 +257,7 @@ class="w-80">
 
             {{-- Kuota --}}
             <p class="text-gray-600 mt-1">
-                👥 Kuota Relawan :
+                👥 Kuota :
                 <span class="font-semibold">
                     {{ $item->kuota_relawan }} orang
                 </span>
