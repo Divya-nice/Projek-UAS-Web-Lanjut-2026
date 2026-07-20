@@ -11,19 +11,26 @@ class RelawanController extends Controller
     /**
      * Menampilkan semua pendaftaran relawan
      */
-    public function index()
+        public function index(Request $request)
     {
-        $relawan = PendaftaranRelawan::with('kegiatan')
-            ->latest()
-            ->paginate(10);
+        $keyword = $request->keyword;
 
-        return view('admin.relawan.index', compact('relawan'));
+        $relawan = PendaftaranRelawan::with('kegiatan')
+            ->when($keyword, function ($query) use ($keyword) {
+                $query->where('nama', 'like', "%{$keyword}%")
+                    ->orWhere('email', 'like', "%{$keyword}%");
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('admin.relawan.index', compact('relawan', 'keyword'));
     }
 
     /**
      * Terima pendaftaran relawan
      */
-    public function terima($id)
+    public function terima(int $id)
     {
         $relawan = PendaftaranRelawan::findOrFail($id);
 
@@ -40,7 +47,7 @@ class RelawanController extends Controller
     /**
      * Tolak pendaftaran relawan
      */
-    public function tolak($id)
+    public function tolak(int $id)
     {
         $relawan = PendaftaranRelawan::findOrFail($id);
 

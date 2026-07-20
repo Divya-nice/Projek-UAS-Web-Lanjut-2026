@@ -43,16 +43,38 @@
 
         <div class="row mb-4">
 
-            <div class="col-md-5">
+            <div class="col-md-6">
 
-                <input
-                    type="text"
-                    id="cariRelawan"
-                    class="form-control"
-                    placeholder="Cari nama relawan...">
+                <form action="{{ route('relawan.index') }}" method="GET" class="d-flex">
+
+                    <input
+                        type="text"
+                        name="keyword"
+                        class="form-control me-2"
+                        placeholder="Cari nama atau email relawan..."
+                        value="{{ request('keyword') }}">
+
+                    <button type="submit" class="btn btn-brown me-2">
+
+                        <i class="bi bi-search"></i>
+
+                    </button>
+
+                    @if(request('keyword'))
+
+                        <a href="{{ route('relawan.index') }}"
+                            class="btn btn-secondary d-flex align-items-center justify-content-center">
+
+                            Reset
+
+                        </a>
+
+                    @endif
+
+                </form>
 
             </div>
-
+        
         </div>
 
         <div class="table-responsive">
@@ -226,9 +248,21 @@
 
         </div>
 
-        <div class="mt-3">
+        <div class="d-flex justify-content-between align-items-center mt-4">
 
-            {{ $relawan->links() }}
+            <div class="text-muted small">
+
+                Menampilkan
+                {{ $relawan->firstItem() ?? 0 }}
+                -
+                {{ $relawan->lastItem() ?? 0 }}
+                dari
+                {{ $relawan->total() }}
+                data relawan
+
+            </div>
+
+            {{ $relawan->withQueryString()->links() }}
 
         </div>
 
@@ -329,30 +363,3 @@
 @endforeach
 
 @endsection
-
-@push('scripts')
-
-<script>
-
-document.getElementById('cariRelawan').addEventListener('keyup', function () {
-
-    let keyword = this.value.toLowerCase();
-
-    document.querySelectorAll('#tabelRelawan tbody tr').forEach(function(row){
-
-        let nama = row.querySelector('.nama-relawan');
-
-        if(!nama) return;
-
-        row.style.display =
-            nama.innerText.toLowerCase().includes(keyword)
-            ? ''
-            : 'none';
-
-    });
-
-});
-
-</script>
-
-@endpush

@@ -25,6 +25,10 @@
         <a href="{{ route('relawan.jadwal') }}" class="hover:text-yellow-300">
             Jadwal Saya
         </a>
+
+        <a href="{{ route('profil.index') }}" class="hover:text-yellow-300">
+            Profil Saya
+        </a>
     </div>
 
     <div class="flex items-center gap-6">
@@ -108,7 +112,7 @@
                 <div class="bg-stone-100 rounded-xl p-4">
                     🕘 <b>Jam Mulai</b>
                     <p class="mt-2">
-                        {{ \Carbon\Carbon::parse($item->jam_mulai)->format('H:i') }}
+                        {{ \Carbon\Carbon::parse($item->jam_mulai)->format('H:i') }} WIB
                     </p>
                 </div>
 

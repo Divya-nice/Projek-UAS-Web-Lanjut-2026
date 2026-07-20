@@ -4,18 +4,11 @@ namespace App\Models;
 
 use App\Models\PendaftaranRelawan;
 use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable([
-    'name',
-    'email',
-    'password',
-    'role'
-])]
 #[Hidden([
     'password',
     'remember_token'
@@ -23,6 +16,13 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'role'
+    ];
+
     use HasFactory, Notifiable;
     protected function casts(): array
     {

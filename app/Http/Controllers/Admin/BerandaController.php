@@ -26,6 +26,16 @@ class BerandaController extends Controller
             'Menunggu Verifikasi'
         )->count();
 
+        $relawanDiterima = PendaftaranRelawan::where(
+            'status',
+            'Diterima'
+        )->count();
+
+        $relawanDitolak = PendaftaranRelawan::where(
+            'status',
+            'Ditolak'
+        )->count();
+
         // Data terbaru
         $kegiatanTerbaru = Kegiatan::latest()->take(5)->get();
 
@@ -39,6 +49,8 @@ class BerandaController extends Controller
             'kegiatanAktif',
             'totalRelawan',
             'pendingRelawan',
+            'relawanDiterima',
+            'relawanDitolak',
             'kegiatanTerbaru',
             'aktivitasRelawan'
         ));

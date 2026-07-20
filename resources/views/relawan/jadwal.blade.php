@@ -44,6 +44,10 @@ shadow-lg">
         Jadwal Saya
     </a>
 
+    <a href="{{ route('profil.index') }}" class="hover:text-yellow-300 transition">
+        Profil Saya
+    </a>
+
 </div>
 
     <div class="flex items-center gap-6">

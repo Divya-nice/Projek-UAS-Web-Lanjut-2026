@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daftar Akun – Gema Aksara</title>
+  <title>Daftar Akun – GemaAksara</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -192,7 +192,8 @@
 
     .field input {
       width: 100%;
-      padding: 14px 14px 4px;
+      height: 52 px;
+      padding: 18px 14px 4px;
       font-size: .88rem;
       font-family: 'Lato', sans-serif;
       color: var(--dark);
@@ -224,7 +225,8 @@
 
     .field label {
       position: absolute;
-      left: 14px; top: 50%;
+      left: 14px; 
+      top: 50%;
       transform: translateY(-50%);
       font-size: .88rem;
       color: var(--muted);
@@ -234,7 +236,7 @@
     }
     .field input:focus ~ label,
     .field input:not(:placeholder-shown) ~ label {
-      top: 10px;
+      top: 8px;
       transform: none;
       font-size: .72rem;
       color: var(--tan-dk);

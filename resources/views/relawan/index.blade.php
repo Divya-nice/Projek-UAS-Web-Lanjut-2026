@@ -11,8 +11,6 @@
 <body class="bg-[#F7F2EB] pt-20 relative overflow-x-hidden">
     
 
-
-
 <!-- Navbar -->
 <nav class="fixed top-0 left-0 w-full z-50
     bg-gradient-to-r
@@ -38,14 +36,16 @@
     <!-- Menu -->
     <div class="flex gap-14 font-medium">
 
-        <a href="/relawan"
-           class="text-yellow-300">
+        <a href="/relawan" class="text-yellow-300">
             Beranda Kegiatan
         </a>
 
-        <a href="/relawan/jadwal"
-           class="hover:text-yellow-300 transition">
+        <a href="/relawan/jadwal" class="hover:text-yellow-300 transition">
             Jadwal Saya
+        </a>
+
+        <a href="{{ route('profil.index') }}" class="hover:text-yellow-300 transition">
+            Profil Saya
         </a>
 
     </div>

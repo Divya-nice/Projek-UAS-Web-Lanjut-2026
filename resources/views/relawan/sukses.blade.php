@@ -45,18 +45,19 @@
 
         <div class="flex gap-14 font-medium">
 
-            <a href="{{ route('relawan.beranda') }}"
-                class="hover:text-yellow-300 transition">
+            <a href="{{ route('relawan.beranda') }}" class="hover:text-yellow-300 transition">
 
                 Beranda Kegiatan
 
             </a>
 
-            <a href="{{ route('relawan.jadwal') }}"
-                class="hover:text-yellow-300 transition">
+            <a href="{{ route('relawan.jadwal') }}" class="hover:text-yellow-300 transition">
 
                 Jadwal Saya
+            </a>
 
+            <a href="{{ route('profil.index') }}" class="hover:text-yellow-300 transition">
+                Profil Saya
             </a>
 
         </div>

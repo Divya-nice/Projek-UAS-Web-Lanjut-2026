@@ -13,7 +13,7 @@
 
 <div class="h-screen flex items-center justify-center overflow-hidden px-6" style="background-color: #F5F0EA;">
 
-    <div class="w-full max-w-[850px] h-[520px] bg-white rounded-[32px] shadow-[0_20px_50px_rgba(107,79,59,0.15)] overflow-hidden grid grid-cols-2">
+    <div class="w-full max-w-[720px] h-[430px] bg-white rounded-[28px] shadow-[0_20px_50px_rgba(107,79,59,0.15)] overflow-hidden grid grid-cols-2">
 
         <div class="relative p-8 flex flex-col items-center justify-center text-center overflow-hidden" 
              style="background: linear-gradient(135deg, #8A6746 0%, #C0A083 50%, #E3CDB6 100%);">
@@ -27,7 +27,7 @@
 
             <div class="relative z-10 flex flex-col items-center px-4 mt-2">
                 
-                <div class="w-24 h-24 bg-white rounded-[24px] shadow-[0_10px_20px_rgba(90,62,38,0.2)] flex items-center justify-center p-3 mb-6">
+                <div class="w-25 h-25 bg-white rounded-[25px] shadow-[0_10px_20px_rgba(90,62,38,0.2)] flex items-center justify-center p-3 mb-6">
                     <img src="{{ asset('images/buku.png.png') }}" class="w-full h-full object-contain">
                 </div>
 

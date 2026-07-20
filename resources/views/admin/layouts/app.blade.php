@@ -151,7 +151,9 @@ body{
 
 .content{
     flex:1;
+    min-width:0;
     padding:35px;
+    overflow-x:hidden;
 }
 
 .page-title{
@@ -223,7 +225,7 @@ footer{
 .table td{
     vertical-align:middle;
     text-align:center;
-    padding:15px;
+    padding:10px;
 }
 
 .table th{
@@ -306,7 +308,7 @@ footer{
 
         <img src="{{ asset('images/books.png') }}" alt="Logo GEMAKSARA">
 
-        <span>GEMAKSARA</span>
+        <span>GemaAksara</span>
 
     </div>
 
@@ -330,54 +332,62 @@ footer{
 
 <div class="wrapper">
 
-<div class="sidebar">
+    <div class="sidebar">
 
-<div class="sidebar-title">
+        <div class="sidebar-title">
+            MENU ADMIN
+        </div>
 
-MENU ADMIN
 
-</div>
+        <a href="{{ route('admin.beranda') }}"
+        class="{{ request()->routeIs('admin.beranda') ? 'active' : '' }}">
 
-<a href="{{ route('admin.beranda') }}"
-class="{{ request()->routeIs('admin.beranda') ? 'active' : '' }}">
+            <i class="bi bi-house-door-fill"></i>
+            Beranda
 
-<i class="bi bi-house-door-fill"></i>
+        </a>
 
-Beranda
 
-</a>
+        <a href="{{ route('kegiatan.index') }}"
+        class="{{ request()->routeIs('kegiatan.*') ? 'active' : '' }}">
 
-<a href="{{ route('kegiatan.index') }}"
-class="{{ request()->routeIs('kegiatan.*') ? 'active' : '' }}">
+            <i class="bi bi-calendar-event-fill"></i>
+            Kelola Kegiatan
 
-<i class="bi bi-calendar-event-fill"></i>
+        </a>
 
-Kelola Kegiatan
 
-</a>
+        <a href="{{ route('relawan.index') }}"
+        class="{{ request()->routeIs('relawan.*') ? 'active' : '' }}">
 
-<a href="{{ route('relawan.index') }}"
-class="{{ request()->routeIs('relawan.*') ? 'active' : '' }}">
+            <i class="bi bi-people-fill"></i>
+            Verifikasi Relawan
 
-<i class="bi bi-people-fill"></i>
+        </a>
 
-Verifikasi Relawan
 
-</a>
+        <a href="{{ route('profil.index') }}"
+        class="{{ request()->routeIs('profil.*') ? 'active' : '' }}">
 
-</div>
+            <i class="bi bi-person-circle"></i>
+            Profil Saya
 
-<div class="content">
+        </a>
 
-@yield('content')
+    </div>
 
-<footer>
 
-© 2026 GEMAKSARA • Sistem Informasi Relawan
+    <div class="content">
 
-</footer>
+        @yield('content')
 
-</div>
+
+        <footer>
+            © 2026 GEMAKSARA • Sistem Informasi Relawan
+        </footer>
+
+    </div>
+
 
 </div>
 

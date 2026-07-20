@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BerandaController;
 use App\Http\Controllers\Admin\KegiatanController;
 use App\Http\Controllers\Admin\RelawanController;
 use App\Http\Controllers\PendaftaranRelawanController;
+use App\Http\Controllers\ProfilController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -23,6 +24,20 @@ Route::get('/register', [AuthController::class,'showRegister'])->name('register'
 Route::post('/register', [AuthController::class,'register'])->name('register.process');
 
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+
+// =========================
+// PROFIL (Admin & Relawan)
+// =========================
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/profil', [ProfilController::class,'index'])
+        ->name('profil.index');
+
+    Route::put('/profil', [ProfilController::class,'update'])
+        ->name('profil.update');
+
+});
 
 
 // =========================

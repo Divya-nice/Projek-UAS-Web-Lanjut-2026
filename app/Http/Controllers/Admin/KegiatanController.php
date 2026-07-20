@@ -14,11 +14,19 @@ class KegiatanController extends Controller
     /**
      * Menampilkan semua data kegiatan
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kegiatan = Kegiatan::orderBy('tanggal', 'desc')->paginate(10);
+        $keyword = $request->keyword;
 
-        return view('admin.kegiatan.index', compact('kegiatan'));
+        $kegiatan = Kegiatan::when($keyword, function ($query) use ($keyword) {
+                $query->where('nama_kegiatan', 'like', "%{$keyword}%")
+                    ->orWhere('lokasi', 'like', "%{$keyword}%");
+            })
+            ->orderBy('tanggal', 'desc')
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('admin.kegiatan.index', compact('kegiatan', 'keyword'));
     }
 
     /**
@@ -156,6 +164,18 @@ class KegiatanController extends Controller
             'gambar.mimes'           => 'Format gambar harus jpg, jpeg, atau png.',
             'gambar.max'             => 'Ukuran gambar maksimal 2MB.',
         ]);
+
+        $jumlahDiterima = PendaftaranRelawan::where('kegiatan_id', $id)
+            ->where('status', 'Diterima')
+            ->count();
+
+        if ($request->kuota_relawan < $jumlahDiterima) {
+            return back()
+                ->withInput()
+                ->withErrors([
+                'kuota_relawan' => 'Kuota tidak boleh lebih kecil dari jumlah relawan yang sudah diterima (' . $jumlahDiterima . ' orang).'
+            ]);
+        }
 
         $kegiatan = Kegiatan::findOrFail($id);
 
