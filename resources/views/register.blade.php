@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daftar Akun – Gema Aksara</title>
+  <title>Daftar Akun – GemaAksara</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -192,7 +193,8 @@
 
     .field input {
       width: 100%;
-      padding: 14px 14px 4px;
+      height: 52px;
+      padding: 18px 14px 4px;
       font-size: .88rem;
       font-family: 'Lato', sans-serif;
       color: var(--dark);
@@ -224,7 +226,8 @@
 
     .field label {
       position: absolute;
-      left: 14px; top: 50%;
+      left: 14px; 
+      top: 50%;
       transform: translateY(-50%);
       font-size: .88rem;
       color: var(--muted);
@@ -234,7 +237,7 @@
     }
     .field input:focus ~ label,
     .field input:not(:placeholder-shown) ~ label {
-      top: 10px;
+      top: 8px;
       transform: none;
       font-size: .72rem;
       color: var(--tan-dk);
@@ -449,7 +452,9 @@
       <div class="field">
         <input type="password" id="password" name="password" placeholder=" " autocomplete="new-password" />
         <label for="password">Password</label>
-        <button type="button" class="toggle-pw" onclick="togglePw('password', this)" aria-label="Tampilkan password">👁</button>
+        <button type="button" class="toggle-pw" onclick="togglePassword('password')" aria-label="Tampilkan password">
+        <i class="bi bi-eye-fill" id="icon-password"></i>
+        </button>
         <div class="field-error" id="pwErr">
           {{ $errors->first('password') ?: 'Password minimal 8 karakter.' }}
         </div>
@@ -468,7 +473,9 @@
       <div class="field">
         <input type="password" id="konfirmasi" name="password_confirmation" placeholder=" " autocomplete="new-password" />
         <label for="konfirmasi">Konfirmasi Password</label>
-        <button type="button" class="toggle-pw" onclick="togglePw('konfirmasi', this)" aria-label="Tampilkan konfirmasi">👁</button>
+        <button type="button" class="toggle-pw" onclick="togglePassword('konfirmasi')" aria-label="Tampilkan konfirmasi">
+        <i class="bi bi-eye-fill" id="icon-konfirmasi"></i>
+        </button>
         <div class="field-error" id="konfErr">Password tidak cocok.</div>
       </div>
 
@@ -476,18 +483,6 @@
         Daftar Sekarang
       </button>
     </form>
-
-    <div class="divider">atau daftar dengan</div>
-
-    <button class="btn-social" type="button">
-      <svg width="20" height="20" viewBox="0 0 48 48">
-        <path fill="#EA4335" d="M24 9.5c3.2 0 6 1.1 8.2 2.9l6.1-6.1C34.6 3.1 29.6 1 24 1 14.8 1 6.9 6.5 3.2 14.3l7.1 5.5C12 14.2 17.5 9.5 24 9.5z"/>
-        <path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.9-2.2 5.4-4.7 7l7.1 5.5c4.2-3.9 6.3-9.6 6.3-16.5z"/>
-        <path fill="#FBBC05" d="M10.3 28.2A14.8 14.8 0 0 1 9.5 24c0-1.5.2-2.9.6-4.2L3 14.3A23 23 0 0 0 1 24c0 3.6.9 7.1 2.5 10.1l7.8-5.9z"/>
-        <path fill="#34A853" d="M24 47c5.5 0 10.2-1.8 13.6-4.9l-7.1-5.5c-1.9 1.3-4.3 2-6.5 2-6.5 0-12-4.7-13.7-11l-7.8 5.9C6.9 41.5 14.8 47 24 47z"/>
-      </svg>
-      Daftar dengan Google
-    </button>
 
     <div class="form-footer">
       Sudah punya akun? <a href="{{ route('login') }}">Masuk</a>
@@ -554,12 +549,25 @@
     sLabel.style.color = v.length ? colors[score - 1] : 'var(--muted)';
   });
 
-  function togglePw(id, btn) {
-    const inp = document.getElementById(id);
-    const isText = inp.type === 'text';
-    inp.type = isText ? 'password' : 'text';
-    btn.textContent = isText ? '👁' : '🙈';
-  }
+  function togglePassword(id)
+{
+    let input = document.getElementById(id);
+    let icon = document.getElementById('icon-' + id);
+
+    if(input.type === "password")
+    {
+        input.type = "text";
+        icon.classList.remove('bi-eye-fill');
+        icon.classList.add('bi-eye-slash-fill');
+    }
+    else
+    {
+        input.type = "password";
+        icon.classList.remove('bi-eye-slash-fill');
+        icon.classList.add('bi-eye-fill');
+    }
+}
+
 
   document.getElementById('submitBtn').addEventListener('click', function(e) {
     const btn = this;

@@ -34,16 +34,41 @@
     <div class="card-body-custom">
 
         <div class="row mb-4">
-            <div class="col-md-5">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Cari kegiatan...">
+
+            <div class="col-md-6">
+
+                <form action="{{ route('kegiatan.index') }}" method="GET" class="d-flex">
+
+                    <input
+                        type="text"
+                        name="keyword"
+                        class="form-control me-2"
+                        placeholder="Cari nama kegiatan atau lokasi..."
+                        value="{{ request('keyword') }}">
+
+                    <button type="submit" class="btn btn-brown me-2">
+
+                        <i class="bi bi-search"></i>
+
+                    </button>
+
+                    @if(request('keyword'))
+
+                        <a href="{{ route('kegiatan.index') }}" class="btn btn-secondary d-flex align-items-center justify-content-center">
+                            Reset
+                        </a>
+
+                    @endif
+
+                </form>
+
             </div>
+
         </div>
 
         <div class="table-responsive">
 
-            <table class="table table-hover align-middle">
+            <table class="table table-hover w-100">
 
                 <thead>
                     <tr>
@@ -55,7 +80,7 @@
                         <th>Lokasi</th>
                         <th>Kuota</th>
                         <th>Status</th>
-                        <th width="220">Aksi</th>
+                        <th width="120">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,46 +110,68 @@
                             @endif
                         </td>
 
-                        <td>
-                            <strong>{{ $item->nama_kegiatan }}</strong>
-                            <br>
-                            <small class="text-muted">
-                                {{ \Illuminate\Support\Str::limit($item->deskripsi, 50) }}
-                            </small>
+                        <td style="min-width:270px; text-align:left;">
+
+                            <div>
+
+                                <div class="fw-semibold mb-1">
+                                    {{ $item->nama_kegiatan }}
+                                </div>
+
+                                <small class="text-muted">
+                                    {{ \Illuminate\Support\Str::limit($item->deskripsi,60) }}
+                                </small>
+
+                            </div>
+
                         </td>
 
                         <td>
-                            {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
+                            {{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}
                         </td>
 
-                        <td>{{ $item->jam_mulai }}</td>
+                        <td>
+                            {{ \Carbon\Carbon::parse($item->jam_mulai)->format('H:i') }} WIB
+                        </td>
 
-                        <td>{{ $item->lokasi }}</td>
+                        <td>{{ \Illuminate\Support\Str::limit($item->lokasi, 30) }}</td>
 
                         <td>{{ $item->kuota_relawan }}</td>
 
                         <td>
-                            @if($item->status == 'Aktif')
-                                <span class="badge bg-success">
-                                    Aktif
-                                </span>
+
+                            @if($item->status == 'Pendaftaran Dibuka')
+
+                            <span class="badge bg-success">
+                                {{ $item->status }}
+                            </span>
+
+                            @elseif($item->status == 'Pendaftaran Ditutup')
+
+                            <span class="badge bg-danger">
+                                {{ $item->status }}
+                            </span>
+
                             @else
-                                <span class="badge bg-secondary">
-                                    Selesai
-                                </span>
+
+                            <span class="badge bg-secondary">
+                                {{ $item->status }}
+                            </span>
+
                             @endif
+
                         </td>
 
                         <td>
+                            <div class="d-flex flex-column align-items-center gap-2">
+                                <a href="{{ route('kegiatan.edit', $item->id_kegiatan) }}"
+                                    class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
 
-                            <a href="{{ route('kegiatan.edit', $item->id_kegiatan) }}"
-                               class="btn btn-warning btn-sm">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-
-                            <form action="{{ route('kegiatan.destroy', $item->id_kegiatan) }}"
-                                  method="POST"
-                                  class="d-inline">
+                                <form action="{{ route('kegiatan.destroy', $item->id_kegiatan) }}"
+                                    method="POST"
+                                    class="d-inline">
 
                                 @csrf
                                 @method('DELETE')
@@ -136,11 +183,9 @@
                                     <i class="bi bi-trash-fill"></i>
 
                                 </button>
-
-                            </form>
-
+                                </form>
+                            </div>
                         </td>
-
                     </tr>
 
                     @empty

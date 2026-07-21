@@ -28,35 +28,35 @@
 
 </div>
 
-<div class="card-custom">
+    <div class="card-custom">
 
-<div class="card-header-custom">
+    <div class="card-header-custom">
 
-<i class="bi bi-plus-circle-fill"></i>
+        <i class="bi bi-plus-circle-fill"></i>
 
-Form Tambah Kegiatan
+        Form Tambah Kegiatan
 
-</div>
+    </div>
 
-<div class="card-body-custom">
+    <div class="card-body-custom">
 
-<form action="{{ route('kegiatan.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('kegiatan.store') }}" method="POST" enctype="multipart/form-data">
 
 @csrf
 
 <div class="mb-3">
 
-<label class="form-label fw-semibold">
+    <label class="form-label fw-semibold">
 
-Nama Kegiatan
+        Nama Kegiatan
 
-</label>
+    </label>
 
-<input
-type="text"
-name="nama_kegiatan"
-class="form-control @error('nama_kegiatan') is-invalid @enderror"
-value="{{ old('nama_kegiatan') }}">
+    <input
+        type="text"
+        name="nama_kegiatan"
+        class="form-control @error('nama_kegiatan') is-invalid @enderror"
+        value="{{ old('nama_kegiatan') }}">
 
 @error('nama_kegiatan')
 <div class="invalid-feedback">
@@ -163,7 +163,7 @@ value="{{ old('lokasi') }}">
 
 <label class="form-label fw-semibold">
 
-Kuota Relawan
+Kuota
 
 </label>
 
@@ -182,6 +182,36 @@ placeholder="Contoh: 10">
 @enderror
 
 </div>
+
+</div>
+
+<div class="mb-3">
+
+    <label class="form-label fw-semibold">
+        Status Pendaftaran
+    </label>
+
+    <select
+        name="status"
+        class="form-select @error('status') is-invalid @enderror">
+
+        <option value="Pendaftaran Dibuka"
+            {{ old('status') == 'Pendaftaran Dibuka' ? 'selected' : '' }}>
+            Pendaftaran Dibuka
+        </option>
+
+        <option value="Pendaftaran Ditutup"
+            {{ old('status') == 'Pendaftaran Ditutup' ? 'selected' : '' }}>
+            Pendaftaran Ditutup
+        </option>
+
+    </select>
+
+    @error('status')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+    @enderror
 
 </div>
 

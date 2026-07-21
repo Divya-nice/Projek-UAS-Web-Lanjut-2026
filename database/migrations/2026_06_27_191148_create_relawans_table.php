@@ -23,10 +23,10 @@ return new class extends Migration
             $table->text('alasan');
 
             $table->enum('status',[
-                'Pending',
+                'Menunggu Verifikasi',
                 'Diterima',
                 'Ditolak'
-            ])->default('Pending');
+            ])->default('Menunggu Verifikasi');
 
             $table->timestamps();
         });

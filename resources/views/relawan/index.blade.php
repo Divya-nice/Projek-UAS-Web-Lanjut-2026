@@ -11,21 +11,19 @@
 <body class="bg-[#F7F2EB] pt-20 relative overflow-x-hidden">
     
 
-
-
 <!-- Navbar -->
 <nav class="fixed top-0 left-0 w-full z-50
-bg-gradient-to-r
-from-amber-950
-via-amber-900
-to-yellow-800
-text-white
-px-12
-py-4
-flex
-justify-between
-items-center
-shadow-lg">
+    bg-gradient-to-r
+    from-amber-950
+    via-amber-900
+    to-yellow-800
+    text-white
+    px-12
+    py-4
+    flex
+    justify-between
+    items-center
+    shadow-lg">
 
     <!-- Logo -->
     <div class="flex items-center gap-3">
@@ -38,14 +36,16 @@ shadow-lg">
     <!-- Menu -->
     <div class="flex gap-14 font-medium">
 
-        <a href="/relawan"
-           class="text-yellow-300">
+        <a href="/relawan" class="text-yellow-300">
             Beranda Kegiatan
         </a>
 
-        <a href="/relawan/jadwal"
-           class="hover:text-yellow-300 transition">
+        <a href="/relawan/jadwal" class="hover:text-yellow-300 transition">
             Jadwal Saya
+        </a>
+
+        <a href="{{ route('profil.index') }}" class="hover:text-yellow-300 transition">
+            Profil Saya
         </a>
 
     </div>
@@ -55,7 +55,7 @@ shadow-lg">
 
         <div class="flex items-center">
             <span class="font-medium">
-                Halo, Relawan
+                Halo, {{ Auth::user()->name }}
             </span>
         </div>
 
@@ -81,91 +81,47 @@ shadow-lg">
 <section class="mx-10 mt-8">
 
 <div class="bg-gradient-to-r
-
-from-[#5B1E08]
-via-[#A3470A]
-to-[#D97706]
-
-rounded-[32px]
-
-shadow-xl
-
-px-12
-py-6
-
-text-white
-
-flex
-items-center
-justify-between">
-
+    from-[#5B1E08]
+    via-[#A3470A]
+    to-[#D97706]
+    rounded-[32px]
+    shadow-xl
+    px-12
+    py-6
+    text-white 
+    flex
+    items-center
+    justify-between">
 
 <!-- kiri -->
 
 <div class="max-w-2xl">
 
-
-<h1 class="text-3xl font-bold leading-tight">
-
-Jadilah Bagian dari
-
-Gerakan Literasi Pontianak
-
-</h1>
-
-
+    <h1 class="text-3xl font-bold leading-tight">
+        Jadilah Bagian dari Gerakan Literasi Pontianak
+    </h1>
 
 <p class="mt-5 text-lg text-amber-100">
-
-Temukan kegiatan membaca,
-
-mendongeng dan edukasi anak
-
-bersama relawan GemaAksara.
-
+    Temukan kegiatan membaca, mendongeng dan edukasi anak, bersama relawan GemaAksara.
 </p>
 
-
-
 <a href="#kegiatan"
+    class="mt-7
+    inline-flex
+    items-center
+    gap-3
+    bg-white
+    text-amber-900
+    font-semibold
+    px-6
+    py-3
+    rounded-xl
+    hover:bg-amber-50
+    duration-300">
 
-class="mt-7
-
-inline-flex
-
-items-center
-
-gap-3
-
-bg-white
-
-text-amber-900
-
-font-semibold
-
-px-6
-
-py-3
-
-rounded-xl
-
-hover:bg-amber-50
-
-duration-300">
-
-
-
-
-Jelajahi Kegiatan
-
-
+    Jelajahi Kegiatan
 </a>
-
-
 </div>
-
-
-
 
 <!-- kanan -->
 
@@ -177,237 +133,75 @@ class="w-80">
 
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- TENTANG GEMAAKSARA -->
 
 <section class="max-w-6xl mx-auto py-14">
 
+    <h2 class="text-4xl font-bold text-center text-amber-950">
+        Tentang GemaAksara
+    </h2>
 
-<h2 class="text-4xl
+    <p class="text-center text-gray-600 mt-3">
+        Mari berkontribusi membangun budaya membaca bagi anak-anak Pontianak.
+    </p>
 
-font-bold
 
-text-center
+    <div class="grid md:grid-cols-3 gap-8 mt-12">
 
-text-amber-950">
+        <!-- card 1 -->
+        <div class="bg-white rounded-3xl shadow-lg p-7 hover:-translate-y-2 duration-300">
 
+            <img src="{{ asset('images/2.png') }}"
+            class="w-30 mb-5">
 
-Tentang GemaAksara
+            <h3 class="text-2xl font-bold text-amber-950">
+                Kegiatan Literasi
+            </h3>
 
+            <p class="mt-3 text-gray-600">
+                Membaca bersama, mendongeng,
+                dan pojok baca untuk anak-anak.
+            </p>
 
-</h2>
+        </div>
 
 
+        <!-- card 2 -->
+        <div class="bg-white rounded-3xl shadow-lg p-7 hover:-translate-y-2 duration-300">
 
-<p class="text-center
+            <img src="{{ asset('images/3.png') }}"
+            class="w-30 mb-5">
 
-text-gray-600
+            <h3 class="text-2xl font-bold text-amber-950">
+                Relawan Aktif
+            </h3>
 
-mt-3">
+            <p class="mt-3 text-gray-600">
+                Pantau jadwal kegiatan dan berkontribusi bersama komunitas.
+            </p>
 
+        </div>
 
-Mari berkontribusi membangun budaya membaca
 
-bagi anak-anak Pontianak.
+        <!-- card 3 -->
+        <div class="bg-white rounded-3xl shadow-lg p-7 hover:-translate-y-2 duration-300">
 
+            <img src="{{ asset('images/4.png') }}"
+            class="w-30 mb-5">
 
-</p>
+            <h3 class="text-2xl font-bold text-amber-950">
+                Dampak Nyata
+            </h3>
 
+            <p class="mt-3 text-gray-600">
+                Menciptakan pengalaman belajar yang menyenangkan bagi anak-anak.
+            </p>
 
+        </div>
 
-
-
-<div class="grid md:grid-cols-3 gap-8 mt-12">
-
-<!-- card 1 -->
-
-<div class="bg-white
-
-rounded-3xl"
-
-shadow-lg
-
-p-7
-
-hover:-translate-y-2
-
-duration-300>
-
-
-<img src="{{ asset('images/2.png') }}"
-
-class="w-30 mb-5">
-
-
-<h3 class="text-2xl
-
-font-bold
-
-text-amber-950">
-
-
-Kegiatan Literasi
-
-
-</h3>
-
-
-<p class="mt-3
-
-text-gray-600">
-
-
-Membaca bersama,
-
-mendongeng,
-
-dan pojok baca
-
-untuk anak-anak.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-<!-- card 2 -->
-
-<div class="bg-white
-
-rounded-3xl
-
-shadow-lg
-
-p-7
-
-hover:-translate-y-2
-
-duration-300">
-
-
-<img src="{{ asset('images/3.png') }}"
-
-class="w-30 mb-5">
-
-
-<h3 class="text-2xl
-
-font-bold
-
-text-amber-950">
-
-
-Relawan Aktif
-
-
-</h3>
-
-
-<p class="mt-3
-
-text-gray-600">
-
-
-Pantau jadwal kegiatan
-
-dan berkontribusi
-
-bersama komunitas.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- card 3 -->
-
-<div class="bg-white
-
-rounded-3xl
-
-shadow-lg
-
-p-7
-
-hover:-translate-y-2
-
-duration-300">
-
-
-<img src="{{ asset('images/4.png') }}"
-
-class="w-30 mb-5">
-
-
-<h3 class="text-2xl
-
-font-bold
-
-text-amber-950">
-
-
-Dampak Nyata
-
-
-</h3>
-
-
-<p class="mt-3
-
-text-gray-600">
-
-
-Menciptakan pengalaman
-
-belajar yang menyenangkan
-
-bagi anak-anak.
-
-
-</p>
-
-
-</div>
-
-
-
-
-</div>
+    </div>
 
 </section>
-
-
-
-
-
-
-
 
 <!-- DAFTAR KEGIATAN -->
 
@@ -431,28 +225,48 @@ bagi anak-anak.
                      class="w-full h-56 object-cover">
             @endif
 
-            <div class="p-6">
+        <div class="p-6">
 
-                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-                    Pendaftaran Dibuka
+            {{-- Status --}}
+            @if($item->status == 'Pendaftaran Dibuka')
+                <span class="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                    🟢 {{ $item->status }}
                 </span>
+            @else
+                <span class="inline-block bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">
+                    🔴 {{ $item->status }}
+                </span>
+            @endif
 
-                <p class="mt-4 text-gray-500">
-                    📅 {{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}
-                </p>
+            {{-- Nama Kegiatan --}}
+            <h3 class="text-2xl font-bold text-amber-900 mt-4">
+                {{ $item->nama_kegiatan }}
+            </h3>
 
-                <p class="text-gray-500">
-                    🕘 {{ $item->jam_mulai }}
-                </p>
+            {{-- Tanggal --}}
+            <p class="text-gray-600 mt-4">
+                📅
+                {{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}
+            </p>
 
-                <h3 class="text-2xl font-bold mt-3 text-amber-900">
-                    {{ $item->nama_kegiatan }}
-                </h3>
+            {{-- Jam --}}
+            <p class="text-gray-600 mt-1">
+                🕘
+                {{ \Carbon\Carbon::parse($item->jam_mulai)->format('H:i') }} WIB
+            </p>
 
-                <p class="text-gray-600 mt-3">
-                    📍 {{ $item->lokasi }}
-                </p>
+            {{-- Kuota --}}
+            <p class="text-gray-600 mt-1">
+                👥 Kuota :
+                <span class="font-semibold">
+                    {{ $item->kuota_relawan }} orang
+                </span>
+            </p>
 
+            {{-- Lokasi --}}
+            <p class="text-gray-600 mt-1">
+                📍 {{ $item->lokasi }}
+            </p>
                 <a href="{{ route('relawan.show', $item->id_kegiatan) }}"
                     class="mt-5 block w-full
                     bg-gradient-to-r

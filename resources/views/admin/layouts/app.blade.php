@@ -151,7 +151,9 @@ body{
 
 .content{
     flex:1;
+    min-width:0;
     padding:35px;
+    overflow-x:hidden;
 }
 
 .page-title{
@@ -215,15 +217,38 @@ footer{
 
 /* ================= TABEL ================= */
 
+.nama-kegiatan{
+    text-align:left !important;
+}
+
+.table td small{
+    color:#777;
+}
+
+.table td small{
+    font-size:12px;
+    line-height:1.3;
+    display:block;
+    margin-top:2px;
+}
+
+.table td .fw-semibold{
+    font-size:15px;
+    color:#333;
+}
+
 .table{
     margin-bottom:0;
 }
 
-.table th,
-.table td{
+.table th{
     vertical-align:middle;
     text-align:center;
-    padding:15px;
+}
+
+.table td{
+    vertical-align:middle;
+    padding:10px;
 }
 
 .table th{
@@ -235,6 +260,38 @@ footer{
     color:#444;
 }
 
+.table td small{
+    display:block;
+    margin-top:3px;
+    line-height:1.4;
+    font-size:12px;
+    color:#6c757d;
+}
+
+.table td .fw-semibold{
+    font-size:15px;
+    font-weight:600;
+    color:#333;
+}
+
+.table td{
+    font-size:13px;
+}
+
+.table td .fw-semibold{
+    font-size:15px;
+    font-weight:600;
+    color:#333;
+}
+
+.table td small{
+    font-size:12px;
+    line-height:1.4;
+    display:block;
+    margin-top:3px;
+    color:#6c757d;
+}
+
 .table .btn{
     border-radius:8px;
     font-size:13px;
@@ -243,8 +300,9 @@ footer{
 }
 
 .badge{
-    font-size:13px;
-    padding:8px 12px;
+    font-size:11px;
+    padding:6px 10px;
+    font-weight:500;
 }
 
 .form-control{
@@ -306,14 +364,14 @@ footer{
 
         <img src="{{ asset('images/books.png') }}" alt="Logo GEMAKSARA">
 
-        <span>GEMAKSARA</span>
+        <span>GemaAksara</span>
 
     </div>
 
     <div class="admin-info">
 
         <span>
-            Halo, <strong>Admin</strong>
+            Halo, <strong>{{ auth()->user()->name }}</strong>
         </span>
 
         <form action="{{ route('logout') }}" method="POST" style="display:inline;">
@@ -330,58 +388,64 @@ footer{
 
 <div class="wrapper">
 
-<div class="sidebar">
+    <div class="sidebar">
 
-<div class="sidebar-title">
+        <div class="sidebar-title">
+            MENU ADMIN
+        </div>
 
-MENU ADMIN
+
+        <a href="{{ route('admin.beranda') }}"
+        class="{{ request()->routeIs('admin.beranda') ? 'active' : '' }}">
+
+            <i class="bi bi-house-door-fill"></i>
+            Beranda
+
+        </a>
+
+
+        <a href="{{ route('kegiatan.index') }}"
+        class="{{ request()->routeIs('kegiatan.*') ? 'active' : '' }}">
+
+            <i class="bi bi-calendar-event-fill"></i>
+            Kelola Kegiatan
+
+        </a>
+
+
+        <a href="{{ route('relawan.index') }}"
+        class="{{ request()->routeIs('relawan.*') ? 'active' : '' }}">
+
+            <i class="bi bi-people-fill"></i>
+            Verifikasi Relawan
+
+        </a>
+
+
+        <a href="{{ route('profil.index') }}"
+        class="{{ request()->routeIs('profil.*') ? 'active' : '' }}">
+
+            <i class="bi bi-person-circle"></i>
+            Profil Saya
+
+        </a>
+
+    </div>
+
+
+    <div class="content">
+
+        @yield('content')
+
+
+        <footer>
+            © 2026 GEMAKSARA • Sistem Informasi Relawan
+        </footer>
+
+    </div>
+
 
 </div>
-
-<a href="{{ route('beranda') }}"
-class="{{ request()->routeIs('beranda') ? 'active' : '' }}">
-
-<i class="bi bi-house-door-fill"></i>
-
-Beranda
-
-</a>
-
-<a href="{{ route('kegiatan.index') }}"
-class="{{ request()->routeIs('kegiatan.*') ? 'active' : '' }}">
-
-<i class="bi bi-calendar-event-fill"></i>
-
-Kelola Kegiatan
-
-</a>
-
-<a href="{{ route('relawan.index') }}"
-class="{{ request()->routeIs('relawan.*') ? 'active' : '' }}">
-
-<i class="bi bi-people-fill"></i>
-
-Verifikasi Relawan
-
-</a>
-
-</div>
-
-<div class="content">
-
-@yield('content')
-
-<footer>
-
-© 2026 GEMAKSARA • Sistem Informasi Relawan
-
-</footer>
-
-</div>
-
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 @stack('scripts')
 

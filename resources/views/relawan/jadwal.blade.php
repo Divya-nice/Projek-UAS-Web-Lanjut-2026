@@ -44,13 +44,17 @@ shadow-lg">
         Jadwal Saya
     </a>
 
+    <a href="{{ route('profil.index') }}" class="hover:text-yellow-300 transition">
+        Profil Saya
+    </a>
+
 </div>
 
     <div class="flex items-center gap-6">
 
         <div class="flex items-center">
             <span class="font-medium">
-                Halo, Relawan
+                Halo, {{ Auth::user()->name }}
             </span>
         </div>
 
@@ -170,56 +174,67 @@ Berikut merupakan daftar kegiatan yang pernah Anda daftar sebagai relawan.
 
 </section>
 
-<!-- ================= CARD 1 ================= -->
-
 <div class="max-w-6xl mx-auto mt-8 space-y-6">
 
-    <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl duration-300 overflow-hidden">
+@forelse($pendaftaran as $item)
 
-        <div class="flex flex-col md:flex-row">
+<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl duration-300 overflow-hidden">
 
-            <!-- Gambar -->
+    <div class="flex flex-col md:flex-row">
 
-            <img src="{{ asset('images/Gema aksara gambar.png') }}"
+        {{-- Gambar --}}
+        @if($item->kegiatan && $item->kegiatan->gambar)
 
-            class="md:w-72 w-full h-56 object-cover">
+            <img
+                src="{{ asset('storage/'.$item->kegiatan->gambar) }}"
+                class="md:w-72 w-full h-56 object-cover">
 
+        @else
 
+            <img
+                src="{{ asset('images/Gema aksara gambar.png') }}"
+                class="md:w-72 w-full h-56 object-cover">
 
+        @endif
 
-            <!-- Isi -->
+        {{-- Isi Card --}}
+        <div class="flex-1 p-7">
 
-            <div class="flex-1 p-7">
+            <div class="flex justify-between items-start flex-wrap gap-4">
 
-                <div class="flex justify-between items-start flex-wrap gap-4">
+                <div>
 
-                    <div>
+                    <h3 class="text-2xl font-bold text-amber-900">
 
-                        <h3 class="text-2xl font-bold text-amber-900">
+                        {{ $item->kegiatan->nama_kegiatan ?? '-' }}
 
-                            Petualangan Membaca Bersama
+                    </h3>
 
-                        </h3>
+                    <p class="mt-2 text-gray-500">
 
-                        <p class="mt-2 text-gray-500">
+                        📅
+                        {{ \Carbon\Carbon::parse($item->kegiatan->tanggal)->translatedFormat('d F Y') }}
 
-                            📅 25 Juli 2026
+                    </p>
 
-                        </p>
+                    <p class="text-gray-500">
 
-                        <p class="text-gray-500">
+                        🕘
+                        {{ \Carbon\Carbon::parse($item->kegiatan->jam_mulai)->format('H:i') }} WIB
 
-                            🕘 09.00 WIB
+                    </p>
 
-                        </p>
+                    <p class="text-gray-500">
 
-                        <p class="text-gray-500">
+                        📍
+                        {{ $item->kegiatan->lokasi ?? '-' }}
 
-                            📍 Aula Perpustakaan Daerah
+                    </p>
 
-                        </p>
+                </div>
 
-                    </div>
+                {{-- Status --}}
+                @if($item->status == 'Menunggu Verifikasi')
 
                     <span class="bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-semibold">
 
@@ -227,74 +242,49 @@ Berikut merupakan daftar kegiatan yang pernah Anda daftar sebagai relawan.
 
                     </span>
 
-                </div>
+                @elseif($item->status == 'Diterima')
+
+                    <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full font-semibold">
+
+                        Diterima
+
+                    </span>
+
+                @else
+
+                    <span class="bg-red-100 text-red-700 px-4 py-2 rounded-full font-semibold">
+
+                        Ditolak
+
+                    </span>
+
+                @endif
+
+            </div>
+
+                        {{-- Pesan Status --}}
+            @if($item->status == 'Menunggu Verifikasi')
 
                 <p class="mt-5 text-gray-600">
-
                     Data pendaftaran Anda sedang diperiksa oleh Admin.
                     Mohon menunggu proses verifikasi.
-
                 </p>
 
-            </div>
+            @elseif($item->status == 'Diterima')
 
-        </div>
+                <p class="mt-5 text-gray-600">
+                    Selamat! Anda telah lolos sebagai relawan.
+                    Silakan hadir sesuai jadwal dan lokasi yang telah ditentukan.
+                </p>
 
-    </div>
+            @else
 
+                <p class="mt-5 text-gray-600">
+                    Mohon maaf, pendaftaran Anda belum dapat diterima.
+                    Terima kasih atas antusiasme Anda mengikuti kegiatan GemaAksara.
+                </p>
 
-
-
-
-
-<!-- ================= CARD 2 ================= -->
-
-<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl duration-300 overflow-hidden">
-
-    <div class="flex flex-col md:flex-row items-stretch">
-<img
-    src="{{ asset('images/Dongeng cerita.png') }}"
-    class="md:w-72 w-full object-cover self-strectch">
-
-
-
-
-        <div class="flex-1 p-7">
-
-            <div class="flex justify-between items-start flex-wrap gap-4">
-
-                <div>
-
-                    <h3 class="text-2xl font-bold text-amber-900">
-    Dongeng Ceria Bersama Anak-anak
-</h3>
-
-<p class="mt-2 text-gray-500">
-    📅 02 Agustus 2026
-</p>
-
-<p class="text-gray-500">
-    🕘 08.30 WIB
-</p>
-
-<p class="text-gray-500">
-    📍 Taman Alun Kapuas
-</p>
-
-                </div>
-
-                <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full font-semibold">
-
-                    Diterima
-
-                </span>
-
-            </div>
-
-            <p class="mt-5 text-gray-600">
-    Selamat! Anda telah lolos seleksi sebagai relawan. Silakan hadir sesuai jadwal dan lokasi yang telah ditentukan.
-</p>
-
+            @endif
 
         </div>
 
@@ -302,72 +292,43 @@ Berikut merupakan daftar kegiatan yang pernah Anda daftar sebagai relawan.
 
 </div>
 
+@empty
 
+<div class="bg-white rounded-3xl shadow-lg p-10 text-center">
 
+    <h3 class="text-2xl font-bold text-amber-900">
 
+        Belum Ada Riwayat Pendaftaran
 
+    </h3>
 
+    <p class="mt-4 text-gray-600">
 
-<!-- ================= CARD 3 ================= -->
+        Anda belum pernah mendaftar menjadi relawan pada kegiatan apa pun.
 
-<div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl duration-300 overflow-hidden">
+    </p>
 
-    <div class="flex flex-col md:flex-row items-stretch">
+    <a
+        href="{{ route('relawan.beranda') }}"
+        class="inline-block mt-6 bg-amber-700 hover:bg-amber-800 text-white px-6 py-3 rounded-xl">
 
-       <img src="{{ asset('images/Kelas kreatif.png') }}"
+        Lihat Kegiatan
 
-        class="md:w-72 w-full object-cover self-strectch ">
-
-
-
-
-        <div class="flex-1 p-7">
-
-            <div class="flex justify-between items-start flex-wrap gap-4">
-
-                <div>
-
-                    <h3 class="text-2xl font-bold text-amber-900">
-    Kelas Kreatif Literasi
-</h3>
-
-<p class="mt-2 text-gray-500">
-    📅 10 Agustus 2026
-</p>
-
-<p class="text-gray-500">
-    🕘 13.00 WIB
-</p>
-
-<p class="text-gray-500">
-    📍 SD Negeri 14 Pontianak
-</p>
-
-                </div>
-
-                <span class="bg-red-100 text-red-700 px-4 py-2 rounded-full font-semibold">
-
-                    Ditolak
-
-                </span>
-
-            </div>
-
-            <p class="mt-5 text-gray-600">
-    Mohon maaf, pendaftaran Anda belum dapat diterima karena kuota relawan telah terpenuhi. Terima kasih atas antusiasme Anda.
-</p>
-        </div>
-
-    </div>
+    </a>
 
 </div>
 
+@endforelse
+
 </div>
 
+<!-- ================= FOOTER SPACE ================= -->
 
+<div class="h-10"></div>
 
+</body>
 
-
+</html>
 
 <!-- ================= FOOTER SPACE ================= -->
 

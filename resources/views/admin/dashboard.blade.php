@@ -150,12 +150,18 @@
                         <td>{{ $kegiatan->lokasi }}</td>
 
                         <td>
-                            @if ($kegiatan->status == 'Aktif')
-                                <span class="badge bg-success">Aktif</span>
-                            @elseif ($kegiatan->status == 'Akan Datang')
-                                <span class="badge bg-warning text-dark">Akan Datang</span>
+                            @if ($kegiatan->status == 'Pendaftaran Dibuka')
+
+                                <span class="badge bg-success">
+                                    Pendaftaran Dibuka
+                                </span>
+
                             @else
-                                <span class="badge bg-secondary">{{ $kegiatan->status }}</span>
+
+                                <span class="badge bg-danger">
+                                    Pendaftaran Ditutup
+                                </span>
+
                             @endif
                         </td>
 
@@ -199,14 +205,33 @@
 
                         <br>
 
-                        <small class="text-muted">
-                            @if ($rel->status == 'Pending')
-                                Menunggu verifikasi admin.
+                        <small class="text-muted d-block">
+                            Kegiatan:
+                            <strong>{{ $rel->kegiatan->nama_kegiatan ?? '-' }}</strong>
+                        </small>
+
+                        <small class="d-block mt-1">
+
+                            @if ($rel->status == 'Menunggu Verifikasi')
+
+                                <span class="badge bg-warning text-dark">
+                                    Menunggu Verifikasi
+                                </span>
+
                             @elseif ($rel->status == 'Diterima')
-                                Telah diverifikasi sebagai relawan.
+
+                                <span class="badge bg-success">
+                                    Diterima
+                                </span>
+
                             @else
-                                Pendaftaran ditolak.
+
+                                <span class="badge bg-danger">
+                                    Ditolak
+                                </span>
+
                             @endif
+
                         </small>
 
                     </div>
