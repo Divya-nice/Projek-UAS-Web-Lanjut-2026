@@ -1,3 +1,5 @@
+@extends('admin.layouts.app')
+
 @extends(Auth::user()->role == 'admin' ? 'admin.layouts.app' : 'relawan.layouts.app')
 
 @section('title','Profil Saya')

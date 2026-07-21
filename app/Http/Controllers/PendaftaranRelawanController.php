@@ -15,13 +15,21 @@ class PendaftaranRelawanController extends Controller
             'email'           => 'required|email|max:255',
             'jenis_kelamin'   => 'required',
             'no_hp'           => 'required|regex:/^[0-9]{10,15}$/',
-            'no_hp.regex'     => 'Nomor HP harus terdiri dari 10 sampai 15 angka.',
             'alamat'          => 'required|string',
             'alasan'          => 'required|string',
             'kegiatan_id'     => 'required',
+        ], [
+            'no_hp.regex'     => 'Nomor HP harus terdiri dari 10 sampai 15 angka.',
         ]);
 
         $kegiatan = \App\Models\Kegiatan::findOrFail($request->kegiatan_id);
+
+        if ($kegiatan->status !== 'Pendaftaran Dibuka') {
+            return back()->with(
+                'error',
+                'Maaf, pendaftaran untuk kegiatan ini sudah ditutup.'
+            );
+        }
 
         $jumlahDiterima = PendaftaranRelawan::where('kegiatan_id', $request->kegiatan_id)
             ->where('status', 'Diterima')

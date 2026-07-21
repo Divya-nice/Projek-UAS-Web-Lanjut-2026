@@ -329,11 +329,3 @@ Berikut merupakan daftar kegiatan yang pernah Anda daftar sebagai relawan.
 </body>
 
 </html>
-
-<!-- ================= FOOTER SPACE ================= -->
-
-<div class="h-10"></div>
-
-</body>
-
-</html>
