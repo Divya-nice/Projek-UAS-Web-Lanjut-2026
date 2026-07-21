@@ -9,13 +9,38 @@
     .font-serif-custom {
         font-family: 'Playfair Display', serif;
     }
+
+@media (max-width: 768px) {
+
+    .login-container {
+        height: auto !important;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .login-card {
+        height: auto !important;
+        max-width: 420px !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    .login-left {
+        padding: 30px 20px;
+    }
+
+    .login-right {
+        padding: 30px 25px;
+    }
+
+}
+
 </style>
 
-<div class="h-screen flex items-center justify-center overflow-hidden px-6" style="background-color: #F5F0EA;">
+<div class="login-container h-screen flex items-center justify-center overflow-hidden px-6">
 
-    <div class="w-full max-w-[720px] h-[430px] bg-white rounded-[28px] shadow-[0_20px_50px_rgba(107,79,59,0.15)] overflow-hidden grid grid-cols-2">
+    <div class="login-card w-full max-w-[720px] h-[430px] bg-white rounded-[28px] shadow-[0_20px_50px_rgba(107,79,59,0.15)] overflow-hidden grid grid-cols-2">
 
-        <div class="relative p-8 flex flex-col items-center justify-center text-center overflow-hidden" 
+        <div class="login-left relative p-8 flex flex-col items-center justify-center text-center overflow-hidden" 
              style="background: linear-gradient(135deg, #8A6746 0%, #C0A083 50%, #E3CDB6 100%);">
             
             <div class="absolute inset-0 z-0 pointer-events-none">
@@ -57,7 +82,7 @@
         </div>
 
 
-        <div class="bg-white px-12 py-10 flex flex-col justify-center">
+        <div class="login-right bg-white px-12 py-10 flex flex-col justify-center">
             
             <div class="mb-6">
                 <h1 class="text-[32px] font-bold tracking-tight mb-1 font-serif-custom" style="color: #3B2818;">
