@@ -136,7 +136,6 @@
                         <input type="checkbox" name="remember" class="rounded w-3.5 h-3.5 checked:bg-[#8A6746]" style="border-color: #DCD0C0;">
                         Ingat saya
                     </label>
-                    <a href="#" class="font-medium hover:underline" style="color: #8A6746;">Lupa password?</a>
                 </div>
 
                 <button
